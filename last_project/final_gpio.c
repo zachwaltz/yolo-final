@@ -11,6 +11,8 @@
 #define ENABLES_OFF 0x00
 #define OUT_EN_B (1 << 4)
 
+uint32_t delay;
+
 void initializeGpioPins(void)
 {
   initPortA();
@@ -200,131 +202,78 @@ void updateDisplay(void)
 	}
 }
 
+// GPIO PORT INITILIZATION FUNCTIONS
+
+// PORTA CONFIGURATION 
+// UART0 (0-1), SPI_CLK (2), /SPI_CS (3), SPI_MISO (4), SPI_MOSI (5), SW2 (6), SW3 (7)
 void initPortA(void){
-	uint32_t delay;
-  
-  // Turn on the Clock
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0;
   delay = SYSCTL_RCGCGPIO_R;
   
-  // Set Digital Enable
-  GPIO_PORTA_DEN_R  = 0xFF; //1111 1111
-  
-  // Set PA7-6 as inputs
-  GPIO_PORTA_DIR_R  = 0x00; //0000 0000
-  
-  // set pull-ups for PA7-6
-  GPIO_PORTA_PUR_R = 0xC0; //1100 0000
-  
-  // Set Alternate Function for PA5-0
-  GPIO_PORTA_AFSEL_R = 0x3F; //0011 1111
-  
-  // Set Port Control Register for PA5-0
+  GPIO_PORTA_DEN_R  = 0xFF; // Set Digital Enable
+  GPIO_PORTA_DIR_R  = 0x00; // Set PA7-6 as inputs
+  GPIO_PORTA_PUR_R = 0xC0; // set pull-ups for PA7-6
+  GPIO_PORTA_AFSEL_R = 0x3F; // Set Alternate Function for PA5-0  
   GPIO_PORTA_PCTL_R = GPIO_PCTL_PA5_SSI0TX | GPIO_PCTL_PA4_SSI0RX | GPIO_PCTL_PA3_SSI0FSS | 
-											GPIO_PCTL_PA2_SSI0CLK | GPIO_PCTL_PA1_U0TX | GPIO_PCTL_PA0_U0RX;
+											GPIO_PCTL_PA2_SSI0CLK | GPIO_PCTL_PA1_U0TX | GPIO_PCTL_PA0_U0RX; // Set Port Control Register for PA5-0
 }
 
-
-
+// PORTB CONFIGURATION
+// DATA (0-7)
 void initPortB(void){
-	uint32_t delay;
-  
-  // Turn on the Clock
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;
   delay = SYSCTL_RCGCGPIO_R;
   
-  // Set Digital Enable
-  GPIO_PORTB_DEN_R  = 0xFF;
-  
-  // Set PB7-0 as outputs
-  GPIO_PORTB_DIR_R  = 0xFF;
+  GPIO_PORTB_DEN_R  = 0xFF; // Set Digital Enable
+  GPIO_PORTB_DIR_R  = 0xFF; // Set PB7-0 as outputs
 }
 
-void initPortC(void)
-{
-  uint32_t delay;
-  
-  // Turn on the Clock
+// PORTC CONFIGURATION
+// JTAG (0-3), RED (4), GRN (5), BLU (6), ROW (7)
+void initPortC(void){
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R2;
   delay = SYSCTL_RCGCGPIO_R;
   
-  // Set Digital Enable
-  GPIO_PORTC_DEN_R  = 0xFF;
-  
-  // Set PC7-4 as outputs
-  GPIO_PORTC_DIR_R  = 0xF0;
-  
-  // set pull-ups for PC3-0
-  GPIO_PORTC_PUR_R = 0x0F;
-  
-  // Set Alternate Function for PC3-0
-  GPIO_PORTC_AFSEL_R = 0x0F;
-  
-  // Set Port Control Register for PC3-0
-  GPIO_PORTC_PCTL_R = (GPIO_PCTL_PC0_TCK | GPIO_PCTL_PC1_TMS | GPIO_PCTL_PC2_TDI |GPIO_PCTL_PC3_TDO);
+  GPIO_PORTC_DEN_R  = 0xFF; // Set Digital Enable
+  GPIO_PORTC_DIR_R  = 0xF0; // Set PC7-4 as outputs
+  GPIO_PORTC_PUR_R = 0x0F; // set pull-ups for PC3-0
+  GPIO_PORTC_AFSEL_R = 0x0F; // Set Alternate Function for PC3-0
+  GPIO_PORTC_PCTL_R = (GPIO_PCTL_PC0_TCK | GPIO_PCTL_PC1_TMS | GPIO_PCTL_PC2_TDI |GPIO_PCTL_PC3_TDO); // Set Port Control Register for PC3-0
 }
 
-void initPortD(void){
-	uint32_t delay;
-  
-  // Turn on the Clock
+// PORTD CONFIGURATION
+// SW4 (2), SW5 (3), UART2_RX (6), UART2_TX (7)
+void initPortD(void){  
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R3;
   delay = SYSCTL_RCGCGPIO_R;
   
-  // Set Digital Enable
-  GPIO_PORTD_DEN_R  = 0xCC; //1100 1100
-  
-  // Set PD3-2 as inputs
-  GPIO_PORTD_DIR_R  = 0x00; //0000 0000
-  
-  // set pull-ups for PC3-2
-  GPIO_PORTD_PUR_R = 0x0C; //0000 1100
-  
-  // Set Alternate Function for PD7-6
-  GPIO_PORTD_AFSEL_R = 0xC0; //1100 0000
-  
-  // Set Port Control Register for PD7-6
-  GPIO_PORTD_PCTL_R = GPIO_PCTL_PD7_U2TX | GPIO_PCTL_PD6_U2RX;
+  GPIO_PORTD_DEN_R  = 0xCC; // Set Digital Enable
+  GPIO_PORTD_DIR_R  = 0x00; // Set PD3-2 as inputs
+  GPIO_PORTD_PUR_R = 0x0C; // set pull-ups for PC3-2
+  GPIO_PORTD_AFSEL_R = 0xC0; // Set Alternate Function for PD7-6
+  GPIO_PORTD_PCTL_R = GPIO_PCTL_PD7_U2TX | GPIO_PCTL_PD6_U2RX; // Set Port Control Register for PD7-6
 }
 
-void initPortE(void){
-	uint32_t delay;
-  
-  // Turn on the Clock
+// PORTE CONFIGURATION
+// ADC1 (2), ADC0 (3), UART5_RX (4), UART5_TX (5)
+void initPortE(void){  
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R4;
   delay = SYSCTL_RCGCGPIO_R;
   
-  // Set Digital Enable
-  GPIO_PORTE_DEN_R  = 0x30; //0011 0000
-  
-  // Set PD3-2 as inputs
-  GPIO_PORTE_DIR_R  = 0x00; //0000 0000
-  
-  // Set Alternate Function for PD7-6
-  GPIO_PORTE_AFSEL_R = 0x3C; //0011 0000
-	
+  GPIO_PORTE_DEN_R  = 0x30; // Set Digital Enable
+  GPIO_PORTE_DIR_R  = 0x00; // Set PD3-2 as inputs
+  GPIO_PORTE_AFSEL_R = 0x3C; // Set Alternate Function for PD7-6
 	GPIO_PORTE_AMSEL_R = 0x0C;
-  
-  // Set Port Control Register for PD7-6
-  GPIO_PORTE_PCTL_R = GPIO_PCTL_PE5_U5TX | GPIO_PCTL_PE4_U5RX;  
+  GPIO_PORTE_PCTL_R = GPIO_PCTL_PE5_U5TX | GPIO_PCTL_PE4_U5RX; // Set Port Control Register for PD7-6 
 }
 
+// PORTF CONFIGURATION
+// SW2 (1), /OE (4)
 void initPortF(void){
-	uint32_t delay;
-  
-  // Turn on the Clock
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R5;
   delay = SYSCTL_RCGCGPIO_R;
   
-  // Set Digital Enable
-  GPIO_PORTF_DEN_R  = 0x12;
-  
-  // Set PD3-2 as inputs
-  GPIO_PORTF_DIR_R  = 0x10;
- 
-	// set pull-ups for PC3-2
-  GPIO_PORTF_PUR_R = 0x0C; //0000 1100
-  
-  // Set Port Control Register for PD7-6
-  GPIO_PORTF_PCTL_R = GPIO_PCTL_PE5_U5TX | GPIO_PCTL_PE4_U5RX;
+  GPIO_PORTF_DEN_R  = 0x12; // Set Digital Enable
+  GPIO_PORTF_DIR_R  = 0x10; // Set PF1 as input, PF2 as output
+  GPIO_PORTF_PUR_R = 0x02; // set pull-ups for PF1
 }
