@@ -21,6 +21,9 @@
 #define PORTE   0x40024000
 #define PORTF   0x40025000
 
+bool alertRowUpdate;
+bool alertADC0;
+bool alertDebounce;
 
 //*****************************************************************************
 //*****************************************************************************
@@ -29,8 +32,7 @@ main(void)
 {
 	//CONFIGURE BOARD
   PLL_Init(); //given to us
-	initializeGpioPins();
-	initializeADC();
+	initBoard();
 	
 	//MAIN LOOP
   while(1)

@@ -79,7 +79,12 @@ __heap_limit
 ;
 ;******************************************************************************
 
-
+				EXTERN TIMERAIntHandler
+				EXTERN SYSTICKIntHandler
+				EXTERN UART0IntHandler
+				EXTERN UART2IntHandler
+				EXTERN UART5IntHandler
+					
 ;******************************************************************************
 ;
 ; The vector table.
@@ -101,7 +106,7 @@ __Vectors       DCD     __initial_sp              		; Top of Stack
                 DCD     IntDefaultHandler          		; Debug Monitor Handler
                 DCD     0                         		; Reserved
                 DCD     IntDefaultHandler            	; PendSV Handler
-                DCD     IntDefaultHandler           	; SysTick Handler
+                DCD     SYSTICKIntHandler           	; SysTick Handler
 
                 ; External Interrupts
 
@@ -110,7 +115,7 @@ __Vectors       DCD     __initial_sp              		; Top of Stack
                 DCD     IntDefaultHandler             	;   2: GPIO Port C
                 DCD     IntDefaultHandler             	;   3: GPIO Port D
                 DCD     IntDefaultHandler             	;   4: GPIO Port E
-                DCD     IntDefaultHandler             	;   5: UART0 Rx and Tx
+                DCD     UART0IntHandler             	;   5: UART0 Rx and Tx
                 DCD     IntDefaultHandler             	;   6: UART1 Rx and Tx
                 DCD     IntDefaultHandler              	;   7: SSI0 Rx and Tx
                 DCD     IntDefaultHandler              	;   8: I2C0 Master and Slave
@@ -124,7 +129,7 @@ __Vectors       DCD     __initial_sp              		; Top of Stack
                 DCD     IntDefaultHandler           	;  16: ADC Sequence 2
                 DCD     IntDefaultHandler           	;  17: ADC Sequence 3
                 DCD     IntDefaultHandler              	;  18: Watchdog timer
-                DCD     IntDefaultHandler           	;  19: Timer 0 subtimer A
+                DCD     TIMERAIntHandler				;  19: Timer 0 subtimer A
                 DCD     IntDefaultHandler           	;  20: Timer 0 subtimer B
                 DCD     IntDefaultHandler           	;  21: Timer 1 subtimer A
                 DCD     IntDefaultHandler           	;  22: Timer 1 subtimer B
@@ -138,7 +143,7 @@ __Vectors       DCD     __initial_sp              		; Top of Stack
                 DCD     IntDefaultHandler             	;  30: GPIO Port F
                 DCD     IntDefaultHandler             	;  31: GPIO Port G
                 DCD     IntDefaultHandler             	;  32: GPIO Port H
-                DCD     IntDefaultHandler             	;  33: UART2 Rx and Tx
+                DCD     UART2IntHandler             	;  33: UART2 Rx and Tx
                 DCD     IntDefaultHandler              	;  34: SSI1 Rx and Tx
                 DCD     IntDefaultHandler           	;  35: Timer 3 subtimer A
                 DCD     IntDefaultHandler           	;  36: Timer 3 subtimer B
@@ -166,7 +171,7 @@ __Vectors       DCD     __initial_sp              		; Top of Stack
                 DCD     IntDefaultHandler              	;  58: SSI3 Rx and Tx
                 DCD     IntDefaultHandler             	;  59: UART3 Rx and Tx
                 DCD     IntDefaultHandler             	;  60: UART4 Rx and Tx
-                DCD     IntDefaultHandler             	;  61: UART5 Rx and Tx
+                DCD     UART5IntHandler             	;  61: UART5 Rx and Tx
                 DCD     IntDefaultHandler             	;  62: UART6 Rx and Tx
                 DCD     IntDefaultHandler             	;  63: UART7 Rx and Tx
                 DCD     0                         		;  64: Reserved

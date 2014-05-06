@@ -1,4 +1,5 @@
 #include "final_gpio.h"
+#include "final_uart.h"
 
 //LED DISPLAY DEFIES
 #define OUTPUT_ENABLE_B 0xEF
@@ -13,7 +14,7 @@
 
 uint32_t delay;
 
-void initializeGpioPins(void)
+void initBoard(void)
 {
   initPortA();
 	initPortB();
@@ -21,6 +22,14 @@ void initializeGpioPins(void)
 	initPortD();
 	initPortE();
 	initPortF();
+	initUART0();
+	initUART2();
+	initUART5();
+	initializeTimerA
+	initializeSysTick
+	initializeWatchdog
+	initializeADC
+	initializeSPI
 }
 
 //*****************************************************************************
@@ -247,11 +256,13 @@ void initPortD(void){
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R3;
   delay = SYSCTL_RCGCGPIO_R;
   
+	GPIO_PORTD_LOCK_R = 0x4C4F434B; //unlock register
   GPIO_PORTD_DEN_R  = 0xCC; // Set Digital Enable
   GPIO_PORTD_DIR_R  = 0x00; // Set PD3-2 as inputs
   GPIO_PORTD_PUR_R = 0x0C; // set pull-ups for PC3-2
   GPIO_PORTD_AFSEL_R = 0xC0; // Set Alternate Function for PD7-6
   GPIO_PORTD_PCTL_R = GPIO_PCTL_PD7_U2TX | GPIO_PCTL_PD6_U2RX; // Set Port Control Register for PD7-6
+	GPIO_PORTD_LOCK_R = 0x4C4F434B; //unlock register
 }
 
 // PORTE CONFIGURATION
@@ -272,8 +283,9 @@ void initPortE(void){
 void initPortF(void){
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R5;
   delay = SYSCTL_RCGCGPIO_R;
-  
+  GPIO_PORTF_LOCK_R = 0x4C4F434B; //unlock register
   GPIO_PORTF_DEN_R  = 0x12; // Set Digital Enable
   GPIO_PORTF_DIR_R  = 0x10; // Set PF1 as input, PF2 as output
   GPIO_PORTF_PUR_R = 0x02; // set pull-ups for PF1
+	GPIO_PORTF_LOCK_R = 0x00000000; //relock register
 }

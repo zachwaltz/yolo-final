@@ -6,7 +6,7 @@
 #include "inc/gpio.h"
 
 //GPIO FUNCTIONS
-void initializeGpioPins(void);
+void initiBoard(void);
 void initPortA(void);
 void initPortB(void);
 void initPortC(void);
