@@ -9,6 +9,9 @@
 #include "final_gpio.h"
 #include "final_adc.h"
 #include "final_systick.h"
+#include "final_spi.h"
+#include "final_uart.h"
+//#include "./lib/pll.lib" DON'T DO THIS, EVER.
 
 
 /******************************************************************************

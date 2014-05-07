@@ -5,6 +5,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <errno.h>
+#include "final_gpio.h"
+#include "final_adc.h"
+#include "final_systick.h"
+#include "final_spi.h"
 
 #define UART0 0x4000C000
 #define UART1 0x4000D000
@@ -14,6 +18,10 @@
 #define UART5 0x40011000
 #define UART6 0x40012000
 #define UART7 0x40013000
+
+void initUART0(void);
+void initUART2(void);
+void initUART5(void);
 
 typedef struct {
   volatile uint32_t    Data;                    // + 0x000
@@ -32,11 +40,5 @@ typedef struct {
   volatile uint32_t    MaskedIntStatus;         // + 0x040
   volatile uint32_t    IntClear;                // + 0x044
 } UART_PERIPH;
- 
-
-/* Exported functions --------------------------------------------------*/
-void initUART0(void);
-void initUART2(void);
-void initUART5(void);
 
 #endif

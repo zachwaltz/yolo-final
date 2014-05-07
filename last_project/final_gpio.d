@@ -1,0 +1,13 @@
+.\final_gpio.o: final_gpio.c
+.\final_gpio.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\final_gpio.o: lm4f120h5qr.h
+.\final_gpio.o: inc/gpio.h
+.\final_gpio.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\final_gpio.o: final_gpio.h
+.\final_gpio.o: final_gpio.h
+.\final_gpio.o: final_adc.h
+.\final_gpio.o: final_systick.h
+.\final_gpio.o: final_spi.h
+.\final_gpio.o: final_uart.h
+.\final_gpio.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\final_gpio.o: C:\Keil\ARM\ARMCC\bin\..\include\errno.h

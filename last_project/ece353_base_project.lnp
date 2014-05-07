@@ -1,0 +1,11 @@
+--cpu Cortex-M4
+".\startup.o"
+".\main.o"
+".\final_adc.o"
+".\final_gpio.o"
+".\final_systick.o"
+".\lib\pll.lib"
+--library_type=microlib --strict --scatter ".\ece353.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\ece353_base_project.map" -o .\ece353_base_project.axf

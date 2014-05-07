@@ -16,21 +16,21 @@ uint32_t interruptClear; //dummy variable used to clear timers
  ****************************************************************************/
 void SYSTICKIntHandler(void)
 {
-  interruptCount++; //this variable counts to 800 every second
-	
-	//row updates
-	if ((interruptCount >= 100/RefreshRate) && (RefreshRate != 0)){ //count to the target count, then switch rows
-		Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
-		AlertRowUpdate = true; //tell foreground process to update the row
-		interruptCount = 0; //reset the count and do it again!
-	}
-	
-	//alert foreground code to interrupts
-	AlertDebounce = true;
-	AlertADC0 = true;
-	
-	//clear interrupt by reading to a dummy variable
-	interruptClear = NVIC_ST_CURRENT_R;
+//  interruptCount++; //this variable counts to 800 every second
+//	
+//	//row updates
+//	if ((interruptCount >= 100/RefreshRate) && (RefreshRate != 0)){ //count to the target count, then switch rows
+//		Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
+//		AlertRowUpdate = true; //tell foreground process to update the row
+//		interruptCount = 0; //reset the count and do it again!
+//	}
+//	
+//	//alert foreground code to interrupts
+//	AlertDebounce = true;
+//	AlertADC0 = true;
+//	
+//	//clear interrupt by reading to a dummy variable
+//	interruptClear = NVIC_ST_CURRENT_R;
 }
 
 void TIMERAIntHandler(void)
@@ -88,7 +88,7 @@ void initializeTimerA(uint32_t count, bool enableInterrupts)
 	TIMER0_TAILR_R = count;
 	TIMER0_IMR_R |= TIMER_IMR_TATOIM;
 	
-	//if(enableInterrupts) WTIMER0_TAMR_R |= TIMER_TAMR_TAMIE;
+	if(enableInterrupts) WTIMER0_TAMR_R |= TIMER_TAMR_TAMIE;
 	
 	//ENABLE TIMER A AND INTERRUPTS IN NVIC
 	TIMER0_CTL_R |= TIMER_CTL_TAEN; //enable timer a

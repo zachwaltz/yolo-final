@@ -5,7 +5,7 @@
  * Configure UART 0 for 8-n-1 with RX and TX interrupts enabled.
  * Enable the RX and TX FIFOs as well.
  ****************************************************************************/
-void initUART0(){
+void initUART0(void){
 	//VARIABLES
   uint32_t delay;
   UART_PERIPH *myUart = (UART_PERIPH *)UART0;
@@ -41,12 +41,9 @@ void initUART0(){
   {
     delay--;
   }
-	
-	//SUCCESSFUL COMPLETION
-  return;
 }
 
-void initUART2(){
+void initUART2(void){
 	//VARIABLES
   uint32_t delay;
   UART_PERIPH *myUart = (UART_PERIPH *)UART2;
@@ -82,12 +79,9 @@ void initUART2(){
   {
     delay--;
   }
-	
-	//SUCCESSFUL COMPLETION
-  return;
 }
 	
-void initUART5(){
+void initUART5(void){
 	//VARIABLES
   uint32_t delay;
   UART_PERIPH *myUart = (UART_PERIPH *)UART5;
@@ -123,9 +117,6 @@ void initUART5(){
   {
     delay--;
   }
-	
-	//SUCCESSFUL COMPLETION
-  return;
 }
 
 

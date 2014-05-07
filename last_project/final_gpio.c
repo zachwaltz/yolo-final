@@ -1,4 +1,10 @@
+#include <stdbool.h>
+#include "lm4f120h5qr.h"
+#include "inc/gpio.h"
 #include "final_gpio.h"
+#include "final_adc.h"
+#include "final_systick.h"
+#include "final_spi.h"
 #include "final_uart.h"
 
 //LED DISPLAY DEFIES
@@ -16,20 +22,29 @@ uint32_t delay;
 
 void initBoard(void)
 {
+	//GPIO
   initPortA();
 	initPortB();
 	initPortC();
 	initPortD();
 	initPortE();
 	initPortF();
+	
+	//UART
 	initUART0();
 	initUART2();
 	initUART5();
-	initializeTimerA
-	initializeSysTick
-	initializeWatchdog
-	initializeADC
-	initializeSPI
+	
+	//TIMERS
+	initializeTimerA(10000, true);
+	initializeSysTick(80000, true);
+	initializeWatchdog(80000000);
+	
+	//ADC
+	initializeADC();
+	
+	//SPI
+	initializeSPI(SSI0, 1, 1);
 }
 
 //*****************************************************************************
@@ -47,169 +62,169 @@ void initBoard(void)
 //      SW303 – Refresh rate displayed in GREEN
 
 //*****************************************************************************
-void examineButtons(void)
-{
-	if(AlertDebounce){
-		//SW301 (SW3)		
-		if(((PortA->Data & 0x80) == 0) && !buttonPressed301) {
-			count301++;
-		} else if (((PortA->Data & 0x80) == 0) && buttonPressed301){
-			count301 = 16; //to prevent a huge count301 variable value
-		} else {
-			count301 = 0;	
-			buttonPressed301 = false;
-		}
-			
-		if(count301 == 15){
-			buttonPressed301 = true;
-			Color = 'R'; //red
-			//print the message
-			uartTxPoll(UART0,"Button 301 Pressed!\n\r");
-		}
-		
-		//SW300 (SW2)		
-		if(((PortA->Data & 0x40) == 0) && !buttonPressed300) {
-			count300++;
-		} else if (((PortA->Data & 0x40) == 0) && buttonPressed300){
-			count300 = 16; //to prevent a huge count300 variable value
-		} else {
-			count300 = 0;	
-			buttonPressed300 = false;
-		}
-			
-		if(count300 == 15){
-			buttonPressed300 = true;
-			Color = 'X'; //display off
-			//print the message
-			uartTxPoll(UART0,"Button 300 Pressed!\n\r");
-		}
-		
-		//SW303 (SW5)		
-		if(((PortD->Data & 0x08) == 0) && !buttonPressed303) {
-			count303++;
-		} else if (((PortD->Data & 0x08) == 0) && buttonPressed303){
-			count303 = 16; //to prevent a huge count303 variable value
-		} else {
-			count303 = 0;	
-			buttonPressed303 = false;
-		}
-			
-		if(count303 == 15){
-			buttonPressed303 = true;
-			Color = 'G'; //green
-			//print the message
-			uartTxPoll(UART0,"Button 303 Pressed!\n\r");
-		}
+//void examineButtons(void)
+//{
+//	if(AlertDebounce){
+//		//SW301 (SW3)		
+//		if(((PortA->Data & 0x80) == 0) && !buttonPressed301) {
+//			count301++;
+//		} else if (((PortA->Data & 0x80) == 0) && buttonPressed301){
+//			count301 = 16; //to prevent a huge count301 variable value
+//		} else {
+//			count301 = 0;	
+//			buttonPressed301 = false;
+//		}
+//			
+//		if(count301 == 15){
+//			buttonPressed301 = true;
+//			Color = 'R'; //red
+//			//print the message
+//			uartTxPoll(UART0,"Button 301 Pressed!\n\r");
+//		}
+//		
+//		//SW300 (SW2)		
+//		if(((PortA->Data & 0x40) == 0) && !buttonPressed300) {
+//			count300++;
+//		} else if (((PortA->Data & 0x40) == 0) && buttonPressed300){
+//			count300 = 16; //to prevent a huge count300 variable value
+//		} else {
+//			count300 = 0;	
+//			buttonPressed300 = false;
+//		}
+//			
+//		if(count300 == 15){
+//			buttonPressed300 = true;
+//			Color = 'X'; //display off
+//			//print the message
+//			uartTxPoll(UART0,"Button 300 Pressed!\n\r");
+//		}
+//		
+//		//SW303 (SW5)		
+//		if(((PortD->Data & 0x08) == 0) && !buttonPressed303) {
+//			count303++;
+//		} else if (((PortD->Data & 0x08) == 0) && buttonPressed303){
+//			count303 = 16; //to prevent a huge count303 variable value
+//		} else {
+//			count303 = 0;	
+//			buttonPressed303 = false;
+//		}
+//			
+//		if(count303 == 15){
+//			buttonPressed303 = true;
+//			Color = 'G'; //green
+//			//print the message
+//			uartTxPoll(UART0,"Button 303 Pressed!\n\r");
+//		}
 
-		//SW302 (SW4)		
-		if(((PortD->Data & 0x04) == 0) && !buttonPressed302) {
-			count302++;
-		} else if (((PortD->Data & 0x04) == 0) && buttonPressed302){
-			count302 = 16; //to prevent a huge count302 variable value
-		} else {
-			count302 = 0;	
-			buttonPressed302 = false;
-		}
-			
-		if(count302 == 15){
-			buttonPressed302 = true;
-			Color = 'B'; //blue
-			//print the message
-			uartTxPoll(UART0,"Button 302 Pressed!\n\r");
-		}	
-		AlertDebounce = false; //clear the alert
-	}	
-	else{
-		return;
-	}		
-}
+//		//SW302 (SW4)		
+//		if(((PortD->Data & 0x04) == 0) && !buttonPressed302) {
+//			count302++;
+//		} else if (((PortD->Data & 0x04) == 0) && buttonPressed302){
+//			count302 = 16; //to prevent a huge count302 variable value
+//		} else {
+//			count302 = 0;	
+//			buttonPressed302 = false;
+//		}
+//			
+//		if(count302 == 15){
+//			buttonPressed302 = true;
+//			Color = 'B'; //blue
+//			//print the message
+//			uartTxPoll(UART0,"Button 302 Pressed!\n\r");
+//		}	
+//		AlertDebounce = false; //clear the alert
+//	}	
+//	else{
+//		return;
+//	}		
+//}
 
-//*****************************************************************************
-// The ISR sets AlertRowUpdate to true if the display should be updated.
-// The routine will call getLCDRow() (led_chars.c) to determine  the 8-bit 
-// data value that will be written out to PORTB.
-//
-// If AlertRowUpdate is false, simply return
-//
-//*****************************************************************************
-void updateDisplay(void)
-{
-	uint8_t result;
-	
-  if (AlertRowUpdate){
-		getLCDRow(RefreshRate, Row, &result); //get the data and send it to PortB. active low at this point, yo.
+////*****************************************************************************
+//// The ISR sets AlertRowUpdate to true if the display should be updated.
+//// The routine will call getLCDRow() (led_chars.c) to determine  the 8-bit 
+//// data value that will be written out to PORTB.
+////
+//// If AlertRowUpdate is false, simply return
+////
+////*****************************************************************************
+//void updateDisplay(void)
+//{
+//	uint8_t result;
+//	
+//  if (AlertRowUpdate){
+//		getLCDRow(RefreshRate, Row, &result); //get the data and send it to PortB. active low at this point, yo.
 
-		PortF->Data |= ~OUTPUT_ENABLE_B; //disable all outputs |= 0x10
-		
-		//BLUE COLOR SELECTED
-		if (Color == 'B') {
-			PortC->Data = BLUE_EN; //enable BLU_EN
-			PortB->Data = ~result; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = result; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GREEN_EN;
-			PortB->Data = 0xF0 & result; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//GREEN COLOR SELECTED
-		if (Color == 'G') {
-			PortC->Data = GREEN_EN;
-			PortB->Data = result & 0xF0;
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = ~result;
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = BLUE_EN;
-			PortB->Data = ~result & 0x0F;
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//RED COLOR SELECTED
-		if (Color == 'R') {
-			PortC->Data = RED_EN;
-			PortB->Data = result;
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = BLUE_EN;
-			if (Row%2 == 0)
-				PortB->Data = 0xFF;
-			else 
-				PortB->Data = result;
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GREEN_EN;
-			if (Row%2 == 1)
-				PortB->Data = 0xFF;
-			else 
-				PortB->Data = result;
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//CLEAR DISPLAY SELECTED 
-		if (Color == 'X') {
-			PortC->Data = RED_EN;
-			PortB->Data = 0xFF; //all red off
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = BLUE_EN;
-			PortB->Data = 0xFF; //all blue off
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GREEN_EN;
-			PortB->Data = 0xFF; //all green off
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		PortC->Data = ROW_EN; //enable ROW_EN
-		PortB->Data = ~(1<<Row); //choose row
-		PortC->Data = ENABLES_OFF; //disable ROW_EN
-		
-		PortF->Data = 0xEF;
-		
-		AlertRowUpdate = false; //clear the alert
-	} else {
-		return;
-	}
-}
+//		PortF->Data |= ~OUTPUT_ENABLE_B; //disable all outputs |= 0x10
+//		
+//		//BLUE COLOR SELECTED
+//		if (Color == 'B') {
+//			PortC->Data = BLUE_EN; //enable BLU_EN
+//			PortB->Data = ~result; //turn on relevant blue (active low LEDs!)
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = RED_EN;
+//			PortB->Data = result; //turn off all red
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = GREEN_EN;
+//			PortB->Data = 0xF0 & result; //turn off all green
+//			PortC->Data = ENABLES_OFF;
+//		}
+//		
+//		//GREEN COLOR SELECTED
+//		if (Color == 'G') {
+//			PortC->Data = GREEN_EN;
+//			PortB->Data = result & 0xF0;
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = RED_EN;
+//			PortB->Data = ~result;
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = BLUE_EN;
+//			PortB->Data = ~result & 0x0F;
+//			PortC->Data = ENABLES_OFF;
+//		}
+//		
+//		//RED COLOR SELECTED
+//		if (Color == 'R') {
+//			PortC->Data = RED_EN;
+//			PortB->Data = result;
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = BLUE_EN;
+//			if (Row%2 == 0)
+//				PortB->Data = 0xFF;
+//			else 
+//				PortB->Data = result;
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = GREEN_EN;
+//			if (Row%2 == 1)
+//				PortB->Data = 0xFF;
+//			else 
+//				PortB->Data = result;
+//			PortC->Data = ENABLES_OFF;
+//		}
+//		
+//		//CLEAR DISPLAY SELECTED 
+//		if (Color == 'X') {
+//			PortC->Data = RED_EN;
+//			PortB->Data = 0xFF; //all red off
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = BLUE_EN;
+//			PortB->Data = 0xFF; //all blue off
+//			PortC->Data = ENABLES_OFF;
+//			PortC->Data = GREEN_EN;
+//			PortB->Data = 0xFF; //all green off
+//			PortC->Data = ENABLES_OFF;
+//		}
+//		
+//		PortC->Data = ROW_EN; //enable ROW_EN
+//		PortB->Data = ~(1<<Row); //choose row
+//		PortC->Data = ENABLES_OFF; //disable ROW_EN
+//		
+//		PortF->Data = 0xEF;
+//		
+//		AlertRowUpdate = false; //clear the alert
+//	} else {
+//		return;
+//	}
+//}
 
 // GPIO PORT INITILIZATION FUNCTIONS
 

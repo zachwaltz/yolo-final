@@ -1,0 +1,41 @@
+Dependencies for Project 'ece353_base_project', Target 'base_project': (DO NOT MODIFY !)
+F (.\Startup.s)(0x536941ED)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\main.c)(0x536A5321)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5285390A)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x52853904)
+I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x5285390A)
+I (lm4f120h5qr.h)(0x53600899)
+I (team.h)(0x53600C4C)
+I (final_gpio.h)(0x536A5520)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x5285390A)
+I (inc/gpio.h)(0x53600E74)
+I (final_adc.h)(0x53600EC5)
+I (final_systick.h)(0x536A5566)
+I (final_spi.h)(0x536A51B7)
+I (final_uart.h)(0x536A55FA)
+I (C:\Keil\ARM\ARMCC\include\errno.h)(0x52853908)
+F (.\final_adc.c)(0x5367F7CA)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-o .\final_adc.o --omf_browse .\final_adc.crf --depend .\final_adc.d)
+I (final_adc.h)(0x53600EC5)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5285390A)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x5285390A)
+I (inc/gpio.h)(0x53600E74)
+I (inc/../lm4f120h5qr.h)(0x53600899)
+F (.\final_gpio.c)(0x536A55A1)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-o .\final_gpio.o --omf_browse .\final_gpio.crf --depend .\final_gpio.d)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x5285390A)
+I (lm4f120h5qr.h)(0x53600899)
+I (inc/gpio.h)(0x53600E74)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5285390A)
+I (final_gpio.h)(0x536A5520)
+I (final_adc.h)(0x53600EC5)
+I (final_systick.h)(0x536A5566)
+I (final_spi.h)(0x536A51B7)
+I (final_uart.h)(0x536A55FA)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x52853904)
+I (C:\Keil\ARM\ARMCC\include\errno.h)(0x52853908)
+F (.\final_systick.c)(0x536A52A3)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-o .\final_systick.o --omf_browse .\final_systick.crf --depend .\final_systick.d)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x5285390A)
+I (lm4f120h5qr.h)(0x53600899)
+I (final_systick.h)(0x536A5566)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5285390A)
+I (inc/gpio.h)(0x53600E74)
+F (.\lib\pll.lib)(0x53600899)()

@@ -1,0 +1,15 @@
+.\main.o: main.c
+.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\main.o: lm4f120h5qr.h
+.\main.o: team.h
+.\main.o: final_gpio.h
+.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\main.o: inc/gpio.h
+.\main.o: final_gpio.h
+.\main.o: final_adc.h
+.\main.o: final_systick.h
+.\main.o: final_spi.h
+.\main.o: final_uart.h
+.\main.o: C:\Keil\ARM\ARMCC\bin\..\include\errno.h
