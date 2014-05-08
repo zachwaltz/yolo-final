@@ -423,6 +423,21 @@
               <FileType>1</FileType>
               <FilePath>.\final_systick.c</FilePath>
             </File>
+            <File>
+              <FileName>final_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\final_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>final_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\final_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>circular_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\circular_buffer.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -432,6 +447,11 @@
               <FileName>pll.lib</FileName>
               <FileType>4</FileType>
               <FilePath>.\lib\pll.lib</FilePath>
+            </File>
+            <File>
+              <FileName>circular_buffer.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>.\lib\circular_buffer.lib</FilePath>
             </File>
           </Files>
         </Group>

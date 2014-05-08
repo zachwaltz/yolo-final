@@ -7,9 +7,6 @@
 //INTERRUPT HANDLERS
 void SYSTICKIntHandler(void);
 void TIMERAIntHandler(void);
-void UART0IntHandler(void);
-void UART2IntHandler(void);
-void UART5IntHandler(void);
 
 //INIT FUNCTIONS
 void initializeSysTick(uint32_t count, bool enableInterrupts);

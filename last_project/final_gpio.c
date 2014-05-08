@@ -7,21 +7,15 @@
 #include "final_spi.h"
 #include "final_uart.h"
 
-//LED DISPLAY DEFIES
-#define OUTPUT_ENABLE_B 0xEF
-#define ENABLES_B 0x0F
-#define nROW_0 ~(1 << 0)
-#define RED_EN (1 << 4)
-#define GREEN_EN (1 << 5)
-#define BLUE_EN (1 << 6)
-#define ROW_EN (1 << 7)
-#define ENABLES_OFF 0x00
-#define OUT_EN_B (1 << 4)
+extern void EnableInterrupts(void);
+extern void DisableInterrupts(void);
 
 uint32_t delay;
 
 void initBoard(void)
 {
+	DisableInterrupts();
+	
 	//GPIO
   initPortA();
 	initPortB();
@@ -38,13 +32,15 @@ void initBoard(void)
 	//TIMERS
 	initializeTimerA(10000, true);
 	initializeSysTick(80000, true);
-	initializeWatchdog(80000000);
+	//initializeWatchdog(80000000);
 	
 	//ADC
 	initializeADC();
 	
 	//SPI
 	initializeSPI(SSI0, 1, 1);
+	
+	EnableInterrupts();
 }
 
 //*****************************************************************************

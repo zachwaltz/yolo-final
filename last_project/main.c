@@ -33,6 +33,8 @@ bool alertDebounce;
 int 
 main(void)
 {
+	char data[] = "This is a test message..";
+	
 	//CONFIGURE BOARD
   PLL_Init(); //given to us
 	initBoard();
@@ -40,7 +42,7 @@ main(void)
 	//MAIN LOOP
   while(1)
   {
-
+		uartTxPoll(UART0, data);
   };
 
   

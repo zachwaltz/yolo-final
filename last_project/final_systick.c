@@ -30,27 +30,12 @@ void SYSTICKIntHandler(void)
 //	AlertADC0 = true;
 //	
 //	//clear interrupt by reading to a dummy variable
-//	interruptClear = NVIC_ST_CURRENT_R;
+	interruptClear = NVIC_ST_CURRENT_R;
 }
 
 void TIMERAIntHandler(void)
 {
-	
-}
-
-void UART0IntHandler(void)
-{
-	
-}
-
-void UART2IntHandler(void)
-{
-	
-}
-
-void UART5IntHandler(void)
-{
-	
+	TIMER0_ICR_R |= TIMER_IMR_TATOIM;
 }
 
 /****************************************************************************
@@ -75,7 +60,8 @@ void initializeTimerA(uint32_t count, bool enableInterrupts)
 	
 	//ENABLE CLOCK
 	SYSCTL_RCGCTIMER_R |= SYSCTL_RCGCTIMER_R0; //enable clock
-	delay = SYSCTL_RCGCTIMER_R; //delay a bit to let it settle
+	delay = 10000;
+  while( delay != 0) delay--;
 	
 	//DISABLE TIMER AND CLEAR CONFIGURATION
 	TIMER0_CTL_R &= ~TIMER_CTL_TAEN; //disable
@@ -88,7 +74,7 @@ void initializeTimerA(uint32_t count, bool enableInterrupts)
 	TIMER0_TAILR_R = count;
 	TIMER0_IMR_R |= TIMER_IMR_TATOIM;
 	
-	if(enableInterrupts) WTIMER0_TAMR_R |= TIMER_TAMR_TAMIE;
+	if(enableInterrupts) TIMER0_TAMR_R |= TIMER_TAMR_TAMIE;
 	
 	//ENABLE TIMER A AND INTERRUPTS IN NVIC
 	TIMER0_CTL_R |= TIMER_CTL_TAEN; //enable timer a
@@ -104,7 +90,9 @@ void initializeWatchdog(uint32_t count)
 	uint32_t delay;
 	
 	SYSCTL_RCGCWD_R |= SYSCTL_RCGCWD_R0; //enable clock for peripheral
-	delay = SYSCTL_RCGCWD_R;
+	delay = 10000;
+  while( delay != 0) delay--;
+	
 	WATCHDOG0_LOCK_R = 0x1ACCE551; //unlock watchdog timer
 	WATCHDOG0_LOAD_R = count; //load the register with desired timer load value
 	WATCHDOG0_CTL_R |= WDT_CTL_INTEN | WDT_CTL_RESEN; //configure to trigger system resets, set RESEN

@@ -1,4 +1,8 @@
 #include "final_spi.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "lm4f120h5qr.h"
 
 // *******************************************
 // Configure SPI
@@ -10,7 +14,8 @@ void initializeSPI( uint32_t base, uint8_t phase, uint8_t polarity)
 
   // Turn on the Clock Gating Register
   SYSCTL_RCGCSSI_R |= SYSCTL_RCGCSSI_R0;
-  delay = SYSCTL_RCGCSSI_R;
+  delay = 10000;
+  while( delay != 0) delay--;
 
   // Disable the SSI interface
   myPeriph->SSICR1 &= ~SSI_CR1_SSE  ;                   // ###04###

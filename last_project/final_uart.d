@@ -1,0 +1,16 @@
+.\final_uart.o: final_uart.c
+.\final_uart.o: final_uart.h
+.\final_uart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\final_uart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\final_uart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\final_uart.o: C:\Keil\ARM\ARMCC\bin\..\include\errno.h
+.\final_uart.o: final_gpio.h
+.\final_uart.o: inc/gpio.h
+.\final_uart.o: inc/../lm4f120h5qr.h
+.\final_uart.o: final_gpio.h
+.\final_uart.o: final_adc.h
+.\final_uart.o: final_systick.h
+.\final_uart.o: final_spi.h
+.\final_uart.o: final_uart.h
+.\final_uart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\final_uart.o: circular_buffer.h

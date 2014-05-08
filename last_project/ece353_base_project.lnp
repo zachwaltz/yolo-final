@@ -4,7 +4,10 @@
 ".\final_adc.o"
 ".\final_gpio.o"
 ".\final_systick.o"
+".\final_spi.o"
+".\final_uart.o"
 ".\lib\pll.lib"
+".\lib\circular_buffer.lib"
 --library_type=microlib --strict --scatter ".\ece353.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

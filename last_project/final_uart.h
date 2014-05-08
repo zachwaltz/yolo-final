@@ -22,6 +22,12 @@
 void initUART0(void);
 void initUART2(void);
 void initUART5(void);
+void UART0IntHandler(void);
+void UART2IntHandler(void);
+void UART5IntHandler(void);
+void uartTxPoll(uint32_t base, char *data);
+char uartRxPoll(uint32_t base, bool block);
+void uartTxCharPoll(uint32_t base, char data);
 
 typedef struct {
   volatile uint32_t    Data;                    // + 0x000
