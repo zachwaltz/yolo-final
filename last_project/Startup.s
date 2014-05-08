@@ -81,7 +81,6 @@ __heap_limit
 
 				EXTERN TIMERAIntHandler
 				EXTERN SYSTICKIntHandler
-				EXTERN UART0IntHandler
 				EXTERN UART2IntHandler
 				EXTERN UART5IntHandler
 					
@@ -115,7 +114,7 @@ __Vectors       DCD     __initial_sp              		; Top of Stack
                 DCD     IntDefaultHandler             	;   2: GPIO Port C
                 DCD     IntDefaultHandler             	;   3: GPIO Port D
                 DCD     IntDefaultHandler             	;   4: GPIO Port E
-                DCD     UART0IntHandler             	;   5: UART0 Rx and Tx
+                DCD     IntDefaultHandler            	;   5: UART0 Rx and Tx
                 DCD     IntDefaultHandler             	;   6: UART1 Rx and Tx
                 DCD     IntDefaultHandler              	;   7: SSI0 Rx and Tx
                 DCD     IntDefaultHandler              	;   8: I2C0 Master and Slave

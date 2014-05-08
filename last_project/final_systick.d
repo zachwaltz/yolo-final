@@ -4,3 +4,10 @@
 .\final_systick.o: final_systick.h
 .\final_systick.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\final_systick.o: inc/gpio.h
+.\final_systick.o: final_gpio.h
+.\final_systick.o: final_gpio.h
+.\final_systick.o: final_adc.h
+.\final_systick.o: final_spi.h
+.\final_systick.o: final_uart.h
+.\final_systick.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\final_systick.o: C:\Keil\ARM\ARMCC\bin\..\include\errno.h

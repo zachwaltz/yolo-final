@@ -29,6 +29,11 @@ void uartTxPoll(uint32_t base, char *data);
 char uartRxPoll(uint32_t base, bool block);
 void uartTxCharPoll(uint32_t base, char data);
 
+void uart2Tx(int data);
+void uart5Tx(int data);
+int uart5Rx(bool block);
+int uart2Rx(bool block);
+
 typedef struct {
   volatile uint32_t    Data;                    // + 0x000
   volatile uint32_t    RxStatus;                // + 0x004

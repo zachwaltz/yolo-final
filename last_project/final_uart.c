@@ -25,6 +25,9 @@ void initUART0(void){
   delay = 10000;
   while( delay != 0) delay--;
 	
+	// Disable UART
+  myUart->UARTControl &= ~UART_CTL_UARTEN;
+	
 	//SET BAUD RATE FOR 115200
 	myUart->IntegerBaudRateDiv = 43;
 	myUart->FracBaudRateDiv = 26;
@@ -33,18 +36,18 @@ void initUART0(void){
   myUart->LineControl = UART_LCRH_WLEN_8 | UART_LCRH_FEN;
   
 	//SET INTERRUPT LEVELS
-	myUart->IntFIFOLevelSel = UART_IFLS_RX1_8 | UART_IFLS_TX1_8; 
-	myUart->IntMask = UART_IM_RXIM | UART_IM_TXIM | UART_IM_RTIM;
+	//myUart->IntFIFOLevelSel = UART_IFLS_RX1_8 | UART_IFLS_TX1_8; 
+	myUart->IntMask = 0; //UART_IM_RXIM | UART_IM_TXIM | UART_IM_RTIM;
 	
 	//REENABLE UART, TX, AND RX
 	myUart->UARTControl = UART_CTL_RXE | UART_CTL_TXE | UART_CTL_UARTEN;
 
 	//SET NVIC PRIORITY FOR INTERRUPTS, THEN ENABLE (5)
-  NVIC_PRI1_R |= 0x2000; //setting 13th bit to 1, level 1
-	NVIC_EN0_R |= NVIC_EN0_INT5;
+  //NVIC_PRI1_R |= 0x2000; //setting 13th bit to 1, level 1
+	//NVIC_EN0_R |= NVIC_EN0_INT5;
   
 	//WAIT UNTIL UART0 IS AVAILABLE
-  while( !(SYSCTL_PRUART_R & SYSCTL_PRUART_R0 )){}
+  //while( !(SYSCTL_PRUART_R & SYSCTL_PRUART_R0 )){}
   
 	//ADDITIONAL DELAY, JUST TO BE SAFE!
 	delay = 500;
@@ -237,19 +240,78 @@ void uart5Tx(int data)
 	myUart->IntMask |= UART_IM_TXIM; //re-enable tx interrupts
 }
 
-void UART0IntHandler(void)
-{
-	
-}
-
 void UART2IntHandler(void)
 {
+	//VARIABLES
+	UART_PERIPH *myUart = (UART_PERIPH *)UART2; //get periph
 	
+	//TX INTERRUPT
+	if ((myUart->MaskedIntStatus & UART_MIS_TXMIS)!= 0){
+		if (cBufGetFreeCount(&txBuf2) == BUFFERSIZE)
+				myUart->IntMask &= ~(UART_IM_TXIM); //clear tx interrupts
+		else{
+			while((myUart->Flag & UART_FR_TXFF) == 0){ //not full! let's fill it up.
+				if (cBufGetFreeCount(&txBuf2) != BUFFERSIZE){//character available in tx buffer
+					cBufGetChar(&txBuf2, (char *) myUart->Data);//data); //remove from txbuffer
+				} 
+			}
+		}
+		myUart->IntClear &= ~(UART_ICR_TXIC); //clear transmit: UART_ICR_TXIC or fill tx FIFO to clear
+	}
+	
+	//RX INTERRUPT
+	if ((myUart->MaskedIntStatus & UART_MIS_RXMIS)!= 0){
+		while((myUart->Flag & UART_FR_RXFE) == 0){ //non-empty rx FIFO
+			//while((myUart->Flag & UART_FR_BUSY) != 0){}//wait until UART is available to accept characters
+			cBufAddChar(&rxBuf2, (char) myUart->Data); //take from fifo and place in rxbuffer
+		}
+		myUart->IntClear &= ~(UART_ICR_RXIC);//clear receive: UART_ICR_RXIC or empty rx FIFO to clear
+	}
+	
+  //RX TIMEOUT INTERRUPT (INDENTICAL, BUT LEFT SEPERATE FOR EASE OF TRACING)
+	if ((myUart->MaskedIntStatus & UART_MIS_RTMIS)!= 0){
+		while((myUart->Flag & UART_FR_RXFE) == 0){ //non-empty rx FIFO
+			cBufAddChar(&rxBuf2, (char) myUart->Data); //take from fifo and place in rxbuffer
+		}
+		myUart->IntClear &= ~(UART_ICR_RTIC); //clear receive time out: UART_ICR_RTIC or empty rx FIFO completely to clear
+	}
 }
 
 void UART5IntHandler(void)
 {
+	//VARIABLES
+	UART_PERIPH *myUart = (UART_PERIPH *)UART5; //get periph
 	
+	//TX INTERRUPT
+	if ((myUart->MaskedIntStatus & UART_MIS_TXMIS)!= 0){
+		if (cBufGetFreeCount(&txBuf5) == BUFFERSIZE)
+				myUart->IntMask &= ~(UART_IM_TXIM); //clear tx interrupts
+		else{
+			while((myUart->Flag & UART_FR_TXFF) == 0){ //not full! let's fill it up.
+				if (cBufGetFreeCount(&txBuf5) != BUFFERSIZE){//character available in tx buffer
+					cBufGetChar(&txBuf5, (char *) myUart->Data);//data); //remove from txbuffer
+				} 
+			}
+		}
+		myUart->IntClear &= ~(UART_ICR_TXIC); //clear transmit: UART_ICR_TXIC or fill tx FIFO to clear
+	}
+	
+	//RX INTERRUPT
+	if ((myUart->MaskedIntStatus & UART_MIS_RXMIS)!= 0){
+		while((myUart->Flag & UART_FR_RXFE) == 0){ //non-empty rx FIFO
+			//while((myUart->Flag & UART_FR_BUSY) != 0){}//wait until UART is available to accept characters
+			cBufAddChar(&rxBuf5, (char) myUart->Data); //take from fifo and place in rxbuffer
+		}
+		myUart->IntClear &= ~(UART_ICR_RXIC);//clear receive: UART_ICR_RXIC or empty rx FIFO to clear
+	}
+	
+  //RX TIMEOUT INTERRUPT (INDENTICAL, BUT LEFT SEPERATE FOR EASE OF TRACING)
+	if ((myUart->MaskedIntStatus & UART_MIS_RTMIS)!= 0){
+		while((myUart->Flag & UART_FR_RXFE) == 0){ //non-empty rx FIFO
+			cBufAddChar(&rxBuf5, (char) myUart->Data); //take from fifo and place in rxbuffer
+		}
+		myUart->IntClear &= ~(UART_ICR_RTIC); //clear receive time out: UART_ICR_RTIC or empty rx FIFO completely to clear
+	}
 }
 
 /****************************************************************************

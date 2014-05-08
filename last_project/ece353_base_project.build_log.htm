@@ -4,302 +4,70 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\Zach\Documents\GitHub\yolo-final\last_project\ece353_base_project.uvproj
-Project File Date:  05/01/2014
+Project File Date:  05/07/2014
 
 <h2>Output:</h2>
 Rebuild target 'base_project'
 assembling Startup.s...
 compiling main.c...
-final_adc.h(14): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_spi.h(28): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_uart.h(44): warning:  #1-D: last line of file ends without a newline
-  #endif
-main.c(37): warning:  #223-D: function "PLL_Init" declared implicitly
+main.c(99): warning:  #223-D: function "PLL_Init" declared implicitly
     PLL_Init(); //given to us
-main.c: 4 warnings, 0 errors
+main.c(95): warning:  #177-D: variable "adctest" was declared but never referenced
+        uint32_t adctest;
+main.c: 2 warnings, 0 errors
 compiling final_adc.c...
-final_adc.h(14): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_adc.c(39): warning:  #1-D: last line of file ends without a newline
-  }
-final_adc.c: 2 warnings, 0 errors
 compiling final_gpio.c...
-final_adc.h(14): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_spi.h(28): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_uart.h(44): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_gpio.c(14): warning:  #47-D: incompatible redefinition of macro "RED_EN" (declared at line 58 of "inc/gpio.h")
-  #define RED_EN (1 << 4)
-final_gpio.c(19): warning:  #47-D: incompatible redefinition of macro "OUT_EN_B" (declared at line 61 of "inc/gpio.h")
-  #define OUT_EN_B (1 << 4)
-final_gpio.c(297): warning:  #1-D: last line of file ends without a newline
-  }
-final_gpio.c: 6 warnings, 0 errors
+final_gpio.c(275): warning:  #177-D: variable "brightnesscount" was declared but never referenced
+        static uint8_t brightnesscount = 0;
+final_gpio.c: 1 warning, 0 errors
 compiling final_systick.c...
-final_systick.c(74): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c(115): warning:  #1-D: last line of file ends without a newline
-  }
-final_systick.c(104): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c: 3 warnings, 0 errors
+compiling final_spi.c...
+compiling final_uart.c...
+final_uart.c(148): warning:  #223-D: function "DisableInterrupts" declared implicitly
+                DisableInterrupts();
+final_uart.c(150): warning:  #223-D: function "EnableInterrupts" declared implicitly
+          EnableInterrupts();
+final_uart.c(158): warning:  #223-D: function "DisableInterrupts" declared implicitly
+                        DisableInterrupts();
+final_uart.c(160): warning:  #223-D: function "EnableInterrupts" declared implicitly
+                  EnableInterrupts();
+final_uart.c(185): warning:  #223-D: function "DisableInterrupts" declared implicitly
+                DisableInterrupts();
+final_uart.c(187): warning:  #223-D: function "EnableInterrupts" declared implicitly
+          EnableInterrupts();
+final_uart.c(199): warning:  #223-D: function "DisableInterrupts" declared implicitly
+                DisableInterrupts();
+final_uart.c(201): warning:  #223-D: function "EnableInterrupts" declared implicitly
+          EnableInterrupts();
+final_uart.c(209): warning:  #223-D: function "DisableInterrupts" declared implicitly
+                        DisableInterrupts();
+final_uart.c(211): warning:  #223-D: function "EnableInterrupts" declared implicitly
+                  EnableInterrupts();
+final_uart.c(236): warning:  #223-D: function "DisableInterrupts" declared implicitly
+                DisableInterrupts();
+final_uart.c(238): warning:  #223-D: function "EnableInterrupts" declared implicitly
+          EnableInterrupts();
+final_uart.c: 12 warnings, 0 errors
 linking...
-.\ece353_base_project.axf: Error: L6218E: Undefined symbol initUART0 (referred from final_gpio.o).
-.\ece353_base_project.axf: Error: L6218E: Undefined symbol initUART2 (referred from final_gpio.o).
-.\ece353_base_project.axf: Error: L6218E: Undefined symbol initUART5 (referred from final_gpio.o).
-.\ece353_base_project.axf: Error: L6218E: Undefined symbol initializeSPI (referred from final_gpio.o).
-Not enough information to list image symbols.
-Finished: 1 information, 0 warning and 4 error messages.
-".\ece353_base_project.axf" - 4 Error(s), 15 Warning(s).
-Target not created
-information to list image symbols.
-Finished: 1 information, 0 warning and 4 error messages.
-".\ece353_base_project.axf" - 4 Error(s), 17 Warning(s).
-Target not created
-): error:  #159: declaration is incompatible with previous "initPortA" (declared at line 18)
-  void initPortA(void){
-final_gpio.c(218): error:  #20: identifier "SYSCTL_RCGCGPIO_R" is undefined
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0;
-final_gpio.c(218): error:  #20: identifier "SYSCTL_RCGCGPIO_R0" is undefined
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0;
-final_gpio.c(221): error:  #20: identifier "GPIO_PORTA_DEN_R" is undefined
-    GPIO_PORTA_DEN_R  = 0xFF; // Set Digital Enable
-final_gpio.c(222): error:  #20: identifier "GPIO_PORTA_DIR_R" is undefined
-    GPIO_PORTA_DIR_R  = 0x00; // Set PA7-6 as inputs
-final_gpio.c(223): error:  #20: identifier "GPIO_PORTA_PUR_R" is undefined
-    GPIO_PORTA_PUR_R = 0xC0; // set pull-ups for PA7-6
-final_gpio.c(224): error:  #20: identifier "GPIO_PORTA_AFSEL_R" is undefined
-    GPIO_PORTA_AFSEL_R = 0x3F; // Set Alternate Function for PA5-0  
-final_gpio.c(225): error:  #20: identifier "GPIO_PORTA_PCTL_R" is undefined
-    GPIO_PORTA_PCTL_R = GPIO_PCTL_PA5_SSI0TX | GPIO_PCTL_PA4_SSI0RX | GPIO_PCTL_PA3_SSI0FSS | 
-final_gpio.c(225): error:  #20: identifier "GPIO_PCTL_PA5_SSI0TX" is undefined
-    GPIO_PORTA_PCTL_R = GPIO_PCTL_PA5_SSI0TX | GPIO_PCTL_PA4_SSI0RX | GPIO_PCTL_PA3_SSI0FSS | 
-final_gpio.c(225): error:  #20: identifier "GPIO_PCTL_PA4_SSI0RX" is undefined
-    GPIO_PORTA_PCTL_R = GPIO_PCTL_PA5_SSI0TX | GPIO_PCTL_PA4_SSI0RX | GPIO_PCTL_PA3_SSI0FSS | 
-final_gpio.c(225): error:  #20: identifier "GPIO_PCTL_PA3_SSI0FSS" is undefined
-    GPIO_PORTA_PCTL_R = GPIO_PCTL_PA5_SSI0TX | GPIO_PCTL_PA4_SSI0RX | GPIO_PCTL_PA3_SSI0FSS | 
-final_gpio.c(226): error:  #20: identifier "GPIO_PCTL_PA2_SSI0CLK" is undefined
-                                                                                        GPIO_PCTL_PA2_SSI0CLK | GPIO_PCTL_PA1_U0TX | GPIO_PCTL_PA0_U0RX; // Set Port Control Register for PA5-0
-final_gpio.c(226): error:  #20: identifier "GPIO_PCTL_PA1_U0TX" is undefined
-                                                                                        GPIO_PCTL_PA2_SSI0CLK | GPIO_PCTL_PA1_U0TX | GPIO_PCTL_PA0_U0RX; // Set Port Control Register for PA5-0
-final_gpio.c(226): error:  #20: identifier "GPIO_PCTL_PA0_U0RX" is undefined
-                                                                                        GPIO_PCTL_PA2_SSI0CLK | GPIO_PCTL_PA1_U0TX | GPIO_PCTL_PA0_U0RX; // Set Port Control Register for PA5-0
-final_gpio.c(231): error:  #159: declaration is incompatible with previous "initPortB" (declared at line 19)
-  void initPortB(void){
-final_gpio.c(232): error:  #20: identifier "SYSCTL_RCGCGPIO_R" is undefined
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;
-final_gpio.c(232): error:  #20: identifier "SYSCTL_RCGCGPIO_R1" is undefined
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;
-final_gpio.c(235): error:  #20: identifier "GPIO_PORTB_DEN_R" is undefined
-    GPIO_PORTB_DEN_R  = 0xFF; // Set Digital Enable
-final_gpio.c(236): error:  #20: identifier "GPIO_PORTB_DIR_R" is undefined
-    GPIO_PORTB_DIR_R  = 0xFF; // Set PB7-0 as outputs
-final_gpio.c(241): error:  #159: declaration is incompatible with previous "initPortC" (declared at line 20)
-  void initPortC(void){
-final_gpio.c(242): error:  #20: identifier "SYSCTL_RCGCGPIO_R" is undefined
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R2;
-final_gpio.c(242): error:  #20: identifier "SYSCTL_RCGCGPIO_R2" is undefined
-    SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R2;
-final_gpio.c(245): error:  #20: identifier "GPIO_PORTC_DEN_R" is undefined
-    GPIO_PORTC_DEN_R  = 0xFF; // Set Digital Enable
-final_gpio.c(246): error:  #20: identifier "GPIO_PORTC_DIR_R" is undefined
-    GPIO_PORTC_DIR_R  = 0xF0; // Set PC7-4 as outputs
-final_gpio.c(247): error:  #20: identifier "GPIO_PORTC_PUR_R" is undefined
-    GPIO_PORTC_PUR_R = 0x0F; // set pull-ups for PC3-0
-final_gpio.c(248): error:  #20: identifier "GPIO_PORTC_AFSEL_R" is undefined
-    GPIO_PORTC_AFSEL_R = 0x0F; // Set Alternate Function for PC3-0
-final_gpio.c(249): error:  #20: identifier "GPIO_PORTC_PCTL_R" is undefined
-    GPIO_PORTC_PCTL_R = (GPIO_PCTL_PC0_TCK | GPIO_PCTL_PC1_TMS | GPIO_PCTL_PC2_TDI |GPIO_PCTL_PC3_TDO); // Set Port Control Register for PC3-0
-final_gpio.c: 14 warnings, 30 errors
-compiling final_systick.c...
-final_systick.c(74): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c(115): warning:  #1-D: last line of file ends without a newline
-  }
-final_systick.c(104): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c: 3 warnings, 0 errors
-".\ece353_base_project.axf" - 30 Error(s), 23 Warning(s).
-Target not created
-+ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): warning:  #1331-D: null (zero) character in input line ignored
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-./lib/pll.lib(5): error:  #7: unrecognized token
-  ÷ORC\001\001\001         \001 \010 \001           ¨\030     \0054     ( ! \036 \002   \010   !H o@ð @\037I\010g\010F o@ô `\010g\010F n ôø`\010f\010F n õ¨`\010f\010F o ðp \010g\010F o\010g\010F o ô P\010g\010F o@ð€@\010g\010F o ðüP\010g\010F o ô€ \010g\010F o ñ€p\010g ¿\006H m\020ð@\017úÐ\003H o ô `\001I\010gpG   à\017@    ARM C/C++ Compiler, 4.1 [Build 894] ArmCC --debug -c -opll.o --depend=pll.d --cpu=Cortex-M4.fp --apcs=interwork -O0 -IC:\Keil\ARM\RV31\Inc -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Luminary -D__EVAL -D__MICROLIB --omf_browse=pll.crf PLL.c `   ÿÿÿÿ\003armcc+ \002|\016\022
-main.c: 58 warnings, 30 errors
-compiling final_adc.c...
-final_adc.h(14): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_adc.c(39): warning:  #1-D: last line of file ends without a newline
-  }
-final_adc.c: 2 warnings, 0 errors
-compiling final_gpio.c...
-final_adc.h(14): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_spi.h(28): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_uart.h(42): warning:  #1-D: last line of file ends without a newline
-  #endif
-final_gpio.c(11): warning:  #47-D: incompatible redefinition of macro "RED_EN" (declared at line 58 of "inc/gpio.h")
-  #define RED_EN (1 << 4)
-final_gpio.c(16): warning:  #47-D: incompatible redefinition of macro "OUT_EN_B" (declared at line 61 of "inc/gpio.h")
-  #define OUT_EN_B (1 << 4)
-final_gpio.c(295): warning:  #1-D: last line of file ends without a newline
-  }
-final_gpio.c: 6 warnings, 0 errors
-compiling final_systick.c...
-final_systick.c(74): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c(115): warning:  #1-D: last line of file ends without a newline
-  }
-final_systick.c(104): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c: 3 warnings, 0 errors
-".\ece353_base_project.axf" - 30 Error(s), 69 Warning(s).
-Target not created
- Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
-final_systick.c(24): error:  #20: identifier "AlertRowUpdate" is undefined
-                AlertRowUpdate = true; //tell foreground process to update the row
-final_systick.c(29): error:  #20: identifier "AlertDebounce" is undefined
-        AlertDebounce = true;
-final_systick.c(30): error:  #20: identifier "AlertADC0" is undefined
-        AlertADC0 = true;
-final_systick.c(74): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c(115): warning:  #1-D: last line of file ends without a newline
-  }
-final_systick.c(104): warning:  #550-D: variable "delay" was set but never used
-        uint32_t delay;
-final_systick.c: 3 warnings, 6 errors
-".\ece353_base_project.axf" - 36 Error(s), 69 Warning(s).
-Target not created
+Program Size: Code=6484 RO-data=32 RW-data=280 ZI-data=8336  
+".\ece353_base_project.axf" - 0 Error(s), 15 Warning(s).
+Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.

@@ -19,4 +19,12 @@ void initPortD(void);
 void initPortE(void);
 void initPortF(void);
 
+void updateDisplay(void);
+void updateGenerationRate(void);
+void getLCDRow(int8_t row, uint8_t *lcdData);
+void examineButtons(void);
+void updateArray(void);
+int wrap(int8_t num);
+int wrap2(int8_t num);
+
 #endif

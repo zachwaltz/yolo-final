@@ -2,41 +2,70 @@
 #include "lm4f120h5qr.h"
 #include "final_systick.h"
 #include "inc/gpio.h"
+#include "final_gpio.h"
 
-extern bool alertRowUpdate;
-extern bool alertADC0;
-extern bool alertDebounce;
+volatile bool AlertRowUpdate;
+volatile bool AlertADC0;
+volatile bool AlertDebounce;
+volatile uint8_t Row;
+extern volatile uint16_t generationRate;
+bool check;
+uint32_t localcount = 0;
+extern volatile bool OneSecond;
 
 uint32_t sysCount;
+uint32_t sysCount2;
 uint32_t aCount;
 uint32_t interruptClear; //dummy variable used to clear timers
 
  /****************************************************************************
- * The SysTick Handler 
+ * The SysTick Handler, happens every 1ms
  ****************************************************************************/
 void SYSTICKIntHandler(void)
 {
-//  interruptCount++; //this variable counts to 800 every second
-//	
-//	//row updates
-//	if ((interruptCount >= 100/RefreshRate) && (RefreshRate != 0)){ //count to the target count, then switch rows
-//		Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
-//		AlertRowUpdate = true; //tell foreground process to update the row
-//		interruptCount = 0; //reset the count and do it again!
-//	}
-//	
-//	//alert foreground code to interrupts
-//	AlertDebounce = true;
-//	AlertADC0 = true;
-//	
-//	//clear interrupt by reading to a dummy variable
+  sysCount++; //this variable counts to 800 every second
+	sysCount2++;
+	localcount++;
+	
+	//row updates
+	if (sysCount == 1){ //count to the target count, then switch rows, 62.5Hz
+		Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
+		AlertRowUpdate = true; //tell foreground process to update the row
+		sysCount = 0; //reset the count and do it again!
+	}
+	
+	if (sysCount2 > generationRate)
+	{ 
+		updateArray();
+		sysCount2 = 0;
+	}
+	
+	if (localcount == 1000) //every 1 ms
+	{
+		localcount = 0;
+		OneSecond = true;
+	}
+		
+		//alert foreground code to interrupts
+		AlertADC0 = true;
+	
+	
+	//clear interrupt by reading to a dummy variable
 	interruptClear = NVIC_ST_CURRENT_R;
 }
 
 void TIMERAIntHandler(void)
 {
+	AlertDebounce = true;
+	
+	//clear watchdog interrupt
+	WATCHDOG0_ICR_R = 0;
+	
+	//clear timer a interrupt
 	TIMER0_ICR_R |= TIMER_IMR_TATOIM;
 }
+
+//INITIALIZATIONS
 
 /****************************************************************************
  * Initialize the SysTick timer to a given count.
@@ -52,7 +81,6 @@ void initializeSysTick(uint32_t count, bool enableInterrupts)
 	
 	sysCount = 0; //start count at zero!
 }
-
 
 void initializeTimerA(uint32_t count, bool enableInterrupts)
 {
@@ -83,7 +111,6 @@ void initializeTimerA(uint32_t count, bool enableInterrupts)
 	//START ACOUNT AT 0
 	aCount = 0;
 }
-
 
 void initializeWatchdog(uint32_t count)
 {
