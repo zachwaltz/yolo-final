@@ -4,88 +4,93 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\Zach\Documents\GitHub\yolo-final\last_project\ece353_base_project.uvproj
-Project File Date:  05/07/2014
+Project File Date:  05/08/2014
 
 <h2>Output:</h2>
 Rebuild target 'base_project'
 assembling Startup.s...
 compiling main.c...
-main.c(121): warning:  #223-D: function "PLL_Init" declared implicitly
+main.c(97): warning:  #514-D: pointless comparison of unsigned integer with a negative constant
+                if (myChar != -1)
+main.c(141): warning:  #223-D: function "PLL_Init" declared implicitly
     PLL_Init(); //given to us
-main.c: 1 warning, 0 errors
+main.c: 2 warnings, 0 errors
 compiling final_adc.c...
 compiling final_gpio.c...
 compiling final_systick.c...
 compiling final_spi.c...
 compiling final_uart.c...
+compiling final_led.c...
+final_led.c(265): warning:  #1-D: last line of file ends without a newline
+  }
+final_led.c(238): warning:  #177-D: variable "counting" was declared but never referenced
+        static uint32_t counting = 0;
+final_led.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=6768 RO-data=32 RW-data=284 ZI-data=8340  
-".\ece353_base_project.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=7756 RO-data=160 RW-data=288 ZI-data=8336  
+".\ece353_base_project.axf" - 0 Error(s), 4 Warning(s).
 Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
 Verify OK.
-oject.axf" - 0 Error(s), 3 Warning(s).
 Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
 Verify OK.
-lared implicitly
-                        DisableInterrupts();
-final_uart.c(164): warning:  #223-D: function "EnableInterrupts" declared implicitly
-                  EnableInterrupts();
-final_uart.c(189): warning:  #223-D: function "DisableInterrupts" declared implicitly
-                DisableInterrupts();
-final_uart.c(191): warning:  #223-D: function "EnableInterrupts" declared implicitly
-          EnableInterrupts();
-final_uart.c(203): warning:  #223-D: function "DisableInterrupts" declared implicitly
-                DisableInterrupts();
-final_uart.c(205): warning:  #223-D: function "EnableInterrupts" declared implicitly
-          EnableInterrupts();
-final_uart.c(213): warning:  #223-D: function "DisableInterrupts" declared implicitly
-                        DisableInterrupts();
-final_uart.c(215): warning:  #223-D: function "EnableInterrupts" declared implicitly
-                  EnableInterrupts();
-final_uart.c(240): warning:  #223-D: function "DisableInterrupts" declared implicitly
-                DisableInterrupts();
-final_uart.c(242): warning:  #223-D: function "EnableInterrupts" declared implicitly
-          EnableInterrupts();
-final_uart.c: 12 warnings, 0 errors
-linking...
-Program Size: Code=6604 RO-data=32 RW-data=284 ZI-data=8340  
-".\ece353_base_project.axf" - 0 Error(s), 15 Warning(s).
-Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Erase Done.
-Programming Done.
-Verify OK.
-ed implicitly
-          EnableInterrupts();
-final_uart.c: 12 warnings, 0 errors
-".\ece353_base_project.axf" - 3 Error(s), 16 Warning(s).
+se_project.axf" - 4 Error(s), 3 Warning(s).
 Target not created
-one.
-Verify OK.
-Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Erase Done.
-Programming Done.
-Verify OK.
-d "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Erase Done.
-Programming Done.
-Verify OK.
-      DisableInterrupts();
-final_uart.c(238): warning:  #223-D: function "EnableInterrupts" declared implicitly
-          EnableInterrupts();
-final_uart.c: 12 warnings, 0 errors
-".\ece353_base_project.axf" - 3 Error(s), 21 Warning(s).
+= ENABLES_OFF;
+final_led.c(253): error:  #20: identifier "GREEN_EN" is undefined
+                        PortC->Data = GREEN_EN;
+final_led.c(260): error:  #20: identifier "GREEN_EN" is undefined
+                        PortC->Data = GREEN_EN;
+final_led.c(262): error:  #20: identifier "ENABLES_OFF" is undefined
+                        PortC->Data = ENABLES_OFF;
+final_led.c(266): error:  #20: identifier "BLUE_EN" is undefined
+                        PortC->Data = BLUE_EN;
+final_led.c(275): error:  #20: identifier "ENABLES_OFF" is undefined
+                        PortC->Data = ENABLES_OFF;
+final_led.c(276): error:  #20: identifier "BLUE_EN" is undefined
+                        PortC->Data = BLUE_EN;
+final_led.c(284): error:  #20: identifier "GREEN_EN" is undefined
+                                PortC->Data = GREEN_EN;
+final_led.c(295): error:  #20: identifier "GREEN_EN" is undefined
+                                PortC->Data = GREEN_EN;
+final_led.c(310): error:  #20: identifier "ENABLES_OFF" is undefined
+                        PortC->Data = ENABLES_OFF;
+final_led.c(311): error:  #20: identifier "BLUE_EN" is undefined
+                        PortC->Data = BLUE_EN;
+final_led.c(314): error:  #20: identifier "GREEN_EN" is undefined
+                        PortC->Data = GREEN_EN;
+final_led.c(319): error:  #20: identifier "ROW_EN" is undefined
+                PortC->Data = ROW_EN; //enable ROW_EN
+final_led.c(321): error:  #20: identifier "ENABLES_OFF" is undefined
+                PortC->Data = ENABLES_OFF; //disable ROW_EN
+final_led.c(329): warning:  #1-D: last line of file ends without a newline
+  }
+final_led.c: 1 warning, 18 errors
+".\ece353_base_project.axf" - 18 Error(s), 3 Warning(s).
 Target not created
-Load "C:\\Users\\Zach\\Documents\\GitHub\\yolo-final\\last_project\\ece353_base_project.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Erase Done.
-Programming Done.
-Verify OK.
+  #20: identifier "PortB" is undefined
+                        PortB->Data = result;
+final_led.c(275): error:  #20: identifier "ENABLES_OFF" is undefined
+                        PortC->Data = ENABLES_OFF;
+final_led.c(276): error:  #20: identifier "BLUE_EN" is undefined
+                        PortC->Data = BLUE_EN;
+final_led.c(284): error:  #20: identifier "GREEN_EN" is undefined
+                                PortC->Data = GREEN_EN;
+final_led.c(295): error:  #20: identifier "GREEN_EN" is undefined
+                                PortC->Data = GREEN_EN;
+final_led.c(308): error:  #20: identifier "PortC" is undefined
+                        PortC->Data = RED_EN;
+final_led.c(309): error:  #20: identifier "PortB" is undefined
+                        PortB->Data = 0xFF; //all red off
+final_led.c(310): error:  #20: identifier "ENABLES_OFF" is undefined
+                        PortC->Data = ENABLES_OFF;
+final_led.c(311): error:  #20: identifier "BLUE_EN" is undefined
+                        PortC->Data = BLUE_EN;
+final_led.c: 0 warnings, 30 errors
+".\ece353_base_project.axf" - 30 Error(s), 2 Warning(s).
+Target not created

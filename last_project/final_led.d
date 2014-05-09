@@ -1,0 +1,14 @@
+.\final_led.o: final_led.c
+.\final_led.o: final_gpio.h
+.\final_led.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\final_led.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\final_led.o: inc/gpio.h
+.\final_led.o: inc/../lm4f120h5qr.h
+.\final_led.o: final_gpio.h
+.\final_led.o: final_adc.h
+.\final_led.o: final_systick.h
+.\final_led.o: final_spi.h
+.\final_led.o: final_uart.h
+.\final_led.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\final_led.o: C:\Keil\ARM\ARMCC\bin\..\include\errno.h
+.\final_led.o: final_led.h

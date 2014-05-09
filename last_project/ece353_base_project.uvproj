@@ -438,6 +438,11 @@
               <FileType>5</FileType>
               <FilePath>.\circular_buffer.h</FilePath>
             </File>
+            <File>
+              <FileName>final_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\final_led.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

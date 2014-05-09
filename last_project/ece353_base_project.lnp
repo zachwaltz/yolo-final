@@ -6,6 +6,7 @@
 ".\final_systick.o"
 ".\final_spi.o"
 ".\final_uart.o"
+".\final_led.o"
 ".\lib\pll.lib"
 ".\lib\circular_buffer.lib"
 --library_type=microlib --strict --scatter ".\ece353.sct"

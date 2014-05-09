@@ -11,6 +11,7 @@
 #include "final_systick.h"
 #include "final_spi.h"
 #include "final_uart.h"
+#include "final_led.h"
 
 extern void EnableInterrupts(void);
 extern void DisableInterrupts(void);
@@ -33,6 +34,8 @@ extern void DisableInterrupts(void);
 extern bool check;
 volatile bool OneSecond = false;
 int secondCount = 0;
+volatile uint8_t count = 0;
+volatile uint8_t sendcount = 0;
 
 bool detectMaster(void)
 {
@@ -84,28 +87,45 @@ bool detectMaster(void)
 
 void slaveApp(void)
 {
+	char myChar;
+	char message[80];
+	
 	uartTxPoll(UART0, "Hello this the slave talking..\n\r");
 	while(1) 
 	{
-		while(OneSecond == false){};
-		OneSecond = false;
-		uartTxPoll(UART0, "Sent clear..\n\r");
-		uart2Tx(UART_CMD_WDT_CLEAR);
+		myChar = uart5Rx(false);
+		if (myChar != -1)
+		{
+			sprintf(message, "Received %d.. \n\r", (int)myChar);
+			uartTxPoll(UART0, message);
+			count = 77; //(int) myChar;
+		}
+		updateCount();
+//		while(OneSecond == false){};
+//		OneSecond = false;
+//		uartTxPoll(UART0, "Sent clear..\n\r");
+//		uart2Tx(UART_CMD_WDT_CLEAR);
 	}
 }
 	
 void masterApp(void)
 {
-	char myChar;
+	//char myChar;
 	
 	uartTxPoll(UART0, "Hi! This is your master talking!\n\r");
 	while(1) 
 	{
-		myChar = uart5Rx(true);
-		if (myChar == UART_CMD_WDT_CLEAR)
-		{
-			uartTxPoll(UART0, "CLEAR!\n\r");
-		}
+//		myChar = uart5Rx(true);
+//		if (myChar == UART_CMD_WDT_CLEAR)
+//		{
+//			uartTxPoll(UART0, "CLEAR!\n\r");
+//		}
+		examineButtons();
+  	updateDisplay();
+		updateGenerationRate();
+		updateArray();
+		uart2Tx(5);
+		//uartTxPoll(UART0, "Sent a message!\n\r");
 	}
 }
 //*****************************************************************************
@@ -113,7 +133,7 @@ void masterApp(void)
 int 
 main(void)
 {
-	//char data[80];
+	char data[80];
 	//uint32_t adctest;
 	bool masterDevice = false;
 	
@@ -121,21 +141,21 @@ main(void)
   PLL_Init(); //given to us
 	initBoard();
 	
-	//sprintf(data, "About to detect master.. \n\r");
-	//uartTxPoll(UART0, data);
+	sprintf(data, "About to detect master.. \n\r");
+	uartTxPoll(UART0, data);
 	
-	//masterDevice = detectMaster();
+	masterDevice = detectMaster();
 
-	//sprintf(data, "Detected master.. \n\r");
-	//uartTxPoll(UART0, data);
+	sprintf(data, "Detected master.. \n\r");
+	uartTxPoll(UART0, data);
 	
 	if (masterDevice)
 	{
-			//masterApp();
+			masterApp();
 	}
 	else
 	{
-			//slaveApp();
+			slaveApp();
 	}
 	
 	//MAIN LOOP
@@ -150,10 +170,6 @@ main(void)
 //		}
 //		examineButtons();
 		
-		examineButtons();
-  	updateDisplay();
-		updateGenerationRate();
-		updateArray();
   };
 
   

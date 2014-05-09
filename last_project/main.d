@@ -13,3 +13,4 @@
 .\main.o: final_spi.h
 .\main.o: final_uart.h
 .\main.o: C:\Keil\ARM\ARMCC\bin\..\include\errno.h
+.\main.o: final_led.h

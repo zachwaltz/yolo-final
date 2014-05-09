@@ -40,26 +40,26 @@ static uint8_t NEW_LED_ARRAY[8][8] = \
 static uint8_t LED_ARRAY[8][8] = \
 //I have hardcoded a couple patterns from the wikipedia page, uncomment a block to see what happens
     {  
-//			//Toad
-// 			1,1,1,1, 1,1,1,1, // ROW 7
-// 			1,1,1,1, 0,0,0,1, // ROW 6			
-// 			1,0,0,0, 0,0,1,1, // ROW 5
-// 			1,0,0,1, 1,1,1,1, // ROW 4
-// 			1,0,1,0, 1,0,1,1, // ROW 3
-// 		  1,1,1,1, 1,1,0,1, // ROW 2
-// 			1,1,1,0, 1,1,1,1, // ROW 1
-// 			1,1,1,1, 1,1,1,1, // ROW 0	
-			
-	 			//Toad
+			//Toad
  			1,1,1,1, 1,1,1,1, // ROW 7
  			1,1,1,1, 0,0,0,1, // ROW 6			
- 			1,1,1,0, 0,0,1,1, // ROW 5
- 			1,1,1,1, 1,1,1,1, // ROW 4
- 			1,1,1,1, 1,1,1,1, // ROW 3
- 		  1,1,1,1, 1,1,1,1, // ROW 2
- 			1,1,1,1, 1,1,1,1, // ROW 1
- 			1,1,1,1, 1,1,1,1, // ROW 0
+ 			1,0,0,0, 0,0,1,1, // ROW 5
+ 			1,0,0,1, 1,1,1,1, // ROW 4
+ 			1,0,1,0, 1,0,1,1, // ROW 3
+ 		  1,1,1,1, 1,1,0,1, // ROW 2
+ 			1,1,1,0, 1,1,1,1, // ROW 1
+ 			1,1,1,1, 1,1,1,1, // ROW 0	
 			
+//	 			//Toad
+// 			1,1,1,1, 1,1,1,1, // ROW 7
+// 			1,1,1,1, 0,0,0,1, // ROW 6			
+// 			1,1,1,0, 0,0,1,1, // ROW 5
+// 			1,1,1,1, 1,1,1,1, // ROW 4
+// 			1,1,1,1, 1,1,1,1, // ROW 3
+// 		  1,1,1,1, 1,1,1,1, // ROW 2
+// 			1,1,1,1, 1,1,1,1, // ROW 1
+// 			1,1,1,1, 1,1,1,1, // ROW 0
+//			
 			//Beehive (still life)
 // 			1,1,1,1, 1,1,1,1, // ROW 7
 // 			1,1,1,0, 0,1,1,1, // ROW 6			
@@ -107,6 +107,7 @@ static uint8_t LED_ARRAY[8][8] = \
  GPIO_PORT *PortE = (GPIO_PORT *)PORTE;
  GPIO_PORT *PortF = (GPIO_PORT *)PORTF;
 
+extern volatile uint8_t sendcount;
 extern volatile bool AlertRowUpdate;
 extern volatile bool AlertADC0;
 extern volatile bool AlertDebounce;
@@ -594,6 +595,8 @@ void updateArray(){
 			}
 		}
 		AlertUpdateArray = false;
+		sendcount++;
+		if (sendcount > 99) sendcount = 0;
 		return;
 	} else {
 		return;
