@@ -7,6 +7,7 @@
 volatile bool AlertRowUpdate;
 volatile bool AlertADC0;
 volatile bool AlertDebounce;
+volatile bool AlertUpdateArray;
 volatile uint8_t Row;
 extern volatile uint16_t generationRate;
 bool check;
@@ -27,16 +28,9 @@ void SYSTICKIntHandler(void)
 	sysCount2++;
 	localcount++;
 	
-	//row updates
-	if (sysCount == 1){ //count to the target count, then switch rows, 62.5Hz
-		Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
-		AlertRowUpdate = true; //tell foreground process to update the row
-		sysCount = 0; //reset the count and do it again!
-	}
-	
 	if (sysCount2 > generationRate)
 	{ 
-		updateArray();
+		AlertUpdateArray = true;
 		sysCount2 = 0;
 	}
 	
@@ -56,7 +50,16 @@ void SYSTICKIntHandler(void)
 
 void TIMERAIntHandler(void)
 {
-	AlertDebounce = true;
+	aCount++;
+	if (aCount == 10){
+		AlertDebounce = true;
+		aCount = 0;
+	}
+	//row updates
+	
+	Row = (Row+1)%8; //wrap around once we hit row 7 ("The eight row")
+	AlertRowUpdate = true; //tell foreground process to update the row
+		
 	
 	//clear watchdog interrupt
 	WATCHDOG0_ICR_R = 0;

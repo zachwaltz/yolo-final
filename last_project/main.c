@@ -28,9 +28,11 @@ extern void DisableInterrupts(void);
 #define     UART_CMD_DISCOVERY        'A'
 #define     UART_CMD_SLAVE_FOUND      'B'
 #define     UART_CMD_RESET_DISPLAY    'C'
+#define 		UART_CMD_WDT_CLEAR				'D'
 
 extern bool check;
 volatile bool OneSecond = false;
+int secondCount = 0;
 
 bool detectMaster(void)
 {
@@ -46,13 +48,13 @@ bool detectMaster(void)
 	 
 	 // If we recieved a discovery packet on U2, send a SLAVE_FOUND command
 	 // back on U2 and return false.  
-	 if( myChar ==  UART_CMD_DISCOVERY )
+	 if( myChar == UART_CMD_DISCOVERY )
 	 {
 		 uartTxPoll(UART0,"SLAVE: TX UART_CMD_SLAVE_FOUND\n\r");
+//		 i = 10000;
+//		 while(i > 0) i--;
 		 uart2Tx(UART_CMD_SLAVE_FOUND);
-			 
-		 //This device is the slave
-		 return false;
+		 return false; //This device is the slave
 	 }
 	 
 	 // Check for a SLAVE_FOUND command on U5.  If you receive the SLAVE_FOUND
@@ -60,9 +62,8 @@ bool detectMaster(void)
 	 myChar = uart5Rx(false);
 	 if(myChar == UART_CMD_SLAVE_FOUND)
 	 {
-		 // This device is the master
 		 uartTxPoll(UART0,"MASTER: RX UART_CMD_SLAVE_FOUND\n\r");
-		 return true;
+		 return true; // This device is the master
 	 }
 	
 		// If no messages are received on either of the UARTs,
@@ -71,6 +72,12 @@ bool detectMaster(void)
 		while(OneSecond == false){};
 		uartTxPoll(UART0,"Discovery: Waiting Done\n\r");
 		OneSecond=false;
+		secondCount++;
+		if (secondCount == 3) 
+		{
+			uartTxPoll(UART0,"MASTER: RX UART_CMD_SLAVE_FOUND\n\r");
+			return true;
+		}
 	}
 }
  
@@ -78,42 +85,57 @@ bool detectMaster(void)
 void slaveApp(void)
 {
 	uartTxPoll(UART0, "Hello this the slave talking..\n\r");
-	while(1) {}
+	while(1) 
+	{
+		while(OneSecond == false){};
+		OneSecond = false;
+		uartTxPoll(UART0, "Sent clear..\n\r");
+		uart2Tx(UART_CMD_WDT_CLEAR);
+	}
 }
 	
 void masterApp(void)
 {
+	char myChar;
+	
 	uartTxPoll(UART0, "Hi! This is your master talking!\n\r");
-	while(1) {}
+	while(1) 
+	{
+		myChar = uart5Rx(true);
+		if (myChar == UART_CMD_WDT_CLEAR)
+		{
+			uartTxPoll(UART0, "CLEAR!\n\r");
+		}
+	}
 }
 //*****************************************************************************
 //*****************************************************************************
 int 
 main(void)
 {
-	char data[80];
-	uint32_t adctest;
-	bool masterDevice = true;
+	//char data[80];
+	//uint32_t adctest;
+	bool masterDevice = false;
 	
 	//CONFIGURE BOARD
   PLL_Init(); //given to us
 	initBoard();
 	
-	sprintf(data, "About to detect master.. \n\r");
-	uartTxPoll(UART0, data);
+	//sprintf(data, "About to detect master.. \n\r");
+	//uartTxPoll(UART0, data);
 	
-	masterDevice = detectMaster();
+	//masterDevice = detectMaster();
 
-	sprintf(data, "Detected master.. \n\r");
-	uartTxPoll(UART0, data);
+	//sprintf(data, "Detected master.. \n\r");
+	//uartTxPoll(UART0, data);
 	
 	if (masterDevice)
 	{
-			masterApp();
+			//masterApp();
 	}
 	else
 	{
-			slaveApp();
+			//slaveApp();
 	}
 	
 	//MAIN LOOP
@@ -131,6 +153,7 @@ main(void)
 		examineButtons();
   	updateDisplay();
 		updateGenerationRate();
+		updateArray();
   };
 
   

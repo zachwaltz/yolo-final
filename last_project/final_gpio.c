@@ -40,15 +40,25 @@ static uint8_t NEW_LED_ARRAY[8][8] = \
 static uint8_t LED_ARRAY[8][8] = \
 //I have hardcoded a couple patterns from the wikipedia page, uncomment a block to see what happens
     {  
-			//Toad
+//			//Toad
 // 			1,1,1,1, 1,1,1,1, // ROW 7
 // 			1,1,1,1, 0,0,0,1, // ROW 6			
-// 			1,1,1,0, 0,0,1,1, // ROW 5
-// 			1,1,1,1, 1,1,1,1, // ROW 4
-// 			1,1,1,1, 1,1,1,1, // ROW 3
-// 		  1,1,1,1, 1,1,1,1, // ROW 2
-// 			1,1,1,1, 1,1,1,1, // ROW 1
-// 			1,1,1,1, 1,1,1,1, // ROW 0	 
+// 			1,0,0,0, 0,0,1,1, // ROW 5
+// 			1,0,0,1, 1,1,1,1, // ROW 4
+// 			1,0,1,0, 1,0,1,1, // ROW 3
+// 		  1,1,1,1, 1,1,0,1, // ROW 2
+// 			1,1,1,0, 1,1,1,1, // ROW 1
+// 			1,1,1,1, 1,1,1,1, // ROW 0	
+			
+	 			//Toad
+ 			1,1,1,1, 1,1,1,1, // ROW 7
+ 			1,1,1,1, 0,0,0,1, // ROW 6			
+ 			1,1,1,0, 0,0,1,1, // ROW 5
+ 			1,1,1,1, 1,1,1,1, // ROW 4
+ 			1,1,1,1, 1,1,1,1, // ROW 3
+ 		  1,1,1,1, 1,1,1,1, // ROW 2
+ 			1,1,1,1, 1,1,1,1, // ROW 1
+ 			1,1,1,1, 1,1,1,1, // ROW 0
 			
 			//Beehive (still life)
 // 			1,1,1,1, 1,1,1,1, // ROW 7
@@ -71,14 +81,14 @@ static uint8_t LED_ARRAY[8][8] = \
 // 			1,1,1,1, 1,1,1,1, // ROW 0	 
     
 			//Glider
-  			1,1,1,1, 1,1,1,1, // ROW 7
-  			1,1,1,1, 0,1,1,1, // ROW 6			
-  			1,1,1,1, 1,0,1,1, // ROW 5
-  			1,1,1,0, 0,0,1,1, // ROW 4
-  			1,1,1,1, 1,1,1,1, // ROW 3
-  	  	1,1,1,1, 1,1,1,1, // ROW 2
-  			1,1,1,1, 1,1,1,1, // ROW 1
-  			1,1,1,1, 1,1,1,1, // ROW 0	 
+//  			1,1,1,1, 1,1,1,1, // ROW 7
+//  			1,1,1,1, 0,1,1,1, // ROW 6			
+//  			1,1,1,1, 1,0,1,1, // ROW 5
+//  			1,1,1,0, 0,0,1,1, // ROW 4
+//  			1,1,1,1, 1,1,1,1, // ROW 3
+//  	  	1,1,1,1, 1,1,1,1, // ROW 2
+//  			1,1,1,1, 1,1,1,1, // ROW 1
+//  			1,1,1,1, 1,1,1,1, // ROW 0	 
 		//Pulsar (wraps around and breaks in 8 wide array)  	
 // 			  1,1,1,1, 1,1,1,1, // ROW 7
 //  			1,1,0,0, 0,1,1,1, // ROW 6			
@@ -100,6 +110,7 @@ static uint8_t LED_ARRAY[8][8] = \
 extern volatile bool AlertRowUpdate;
 extern volatile bool AlertADC0;
 extern volatile bool AlertDebounce;
+extern volatile bool AlertUpdateArray;
 volatile uint16_t generationRate;
 extern volatile uint8_t Row;
 int8_t brightness = 0;
@@ -140,7 +151,7 @@ void initBoard(void)
 	initUART5();
 	
 	//TIMERS
-	initializeTimerA(100000, true);
+	initializeTimerA(10000, true);
 	initializeSysTick(80000, true);
 	initializeWatchdog(80000000);
 	
@@ -203,9 +214,9 @@ void examineButtons(void)
 		if(count300 == 15){
 			buttonPressed300 = true;
 			//BRIGHTNESS UP!
-			if (brightness < 100)
-				brightness = brightness + 5;
-			else brightness = 100;
+			if (brightness < 10)
+				brightness = brightness + 1;
+			else brightness = 10;
 			//print the message
 			sprintf(data, "BRIGHTNESS: %d \n\r", brightness);
 			uartTxPoll(UART0,data);
@@ -248,7 +259,7 @@ void examineButtons(void)
 			buttonPressed302 = true;
 			//BRIGHTNESS DOWN!
 			if (brightness > 0)
-				brightness = brightness - 5;
+				brightness = brightness - 1;
 			else brightness = 0;
 			//print the message
 			sprintf(data, "BRIGHTNESS: %d \n\r", brightness);
@@ -275,122 +286,140 @@ void updateDisplay(void)
 	static uint8_t brightnesscount = 0;
 	
   if (AlertRowUpdate){
-		getLCDRow(Row, &result); //get the data and send it to PortB. active low at this point, yo.
+		brightnesscount++;
+		if (brightnesscount > brightness){
+			if (brightnesscount > 10) brightnesscount = 0;
+				PortF->Data |= ~OUT_EN_B; //disable all outputs |= 0x10
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = 0xFF; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = 0xFF; //turn off all green
+				PortC->Data = ENABLES_OFF;
+				PortF->Data = 0xEF;
+				AlertRowUpdate = false;
+			return;
+		} else {
+			getLCDRow(Row, &result); //get the data and send it to PortB. active low at this point, yo.
 
-		PortF->Data |= ~OUT_EN_B; //disable all outputs |= 0x10
-		
-		//BLUE COLOR SELECTED
-		if (color == 0) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = result;//turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = 0xFF; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = 0xFF; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 1) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = result; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = 0xFF; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 2) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = 0xFF; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = result; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 3) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = result; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = result; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = 0xFF; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 4) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = result; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = result; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 5) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = result; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = 0xFF; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = result; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 6) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = result; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = result; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = result; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		//BLUE COLOR SELECTED
-		if (color == 7) {
-			PortC->Data = BLU_EN; //enable BLU_EN
-			PortB->Data = ~result; //turn on relevant blue (active low LEDs!)
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = RED_EN;
-			PortB->Data = ~result; //turn off all red
-			PortC->Data = ENABLES_OFF;
-			PortC->Data = GRN_EN;
-			PortB->Data = ~result; //turn off all green
-			PortC->Data = ENABLES_OFF;
-		}
-		
-		PortC->Data = ROW_EN; //enable ROW_EN
-		PortB->Data = ~(1<<Row); //choose row
-		PortC->Data = ENABLES_OFF; //disable ROW_EN
-		
-		PortF->Data = 0xEF;
-		
-		AlertRowUpdate = false; //clear the alert
-	} else {
+			PortF->Data |= ~OUT_EN_B; //disable all outputs |= 0x10
+			
+			//BLUE COLOR SELECTED
+			if (color == 0) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = result;//turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = 0xFF; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = 0xFF; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 1) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = result; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = 0xFF; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 2) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = 0xFF; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = result; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 3) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = result; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = result; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = 0xFF; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 4) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = 0xFF; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = result; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = result; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 5) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = result; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = 0xFF; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = result; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 6) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = result; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = result; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = result; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			//BLUE COLOR SELECTED
+			if (color == 7) {
+				PortC->Data = BLU_EN; //enable BLU_EN
+				PortB->Data = ~result; //turn on relevant blue (active low LEDs!)
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = RED_EN;
+				PortB->Data = ~result; //turn off all red
+				PortC->Data = ENABLES_OFF;
+				PortC->Data = GRN_EN;
+				PortB->Data = ~result; //turn off all green
+				PortC->Data = ENABLES_OFF;
+			}
+			
+			PortC->Data = ROW_EN; //enable ROW_EN
+			PortB->Data = ~(1<<Row); //choose row
+			PortC->Data = ENABLES_OFF; //disable ROW_EN
+			
+			PortF->Data = 0xEF;
+			
+			AlertRowUpdate = false; //clear the alert
+		}}
+	  else {
 		return;
 	}
 }
@@ -446,7 +475,7 @@ void initPortD(void){
   GPIO_PORTD_PUR_R = 0x0C; // set pull-ups for PC3-2
   GPIO_PORTD_AFSEL_R = 0xC0; // Set Alternate Function for PD7-6
   GPIO_PORTD_PCTL_R = GPIO_PCTL_PD7_U2TX | GPIO_PCTL_PD6_U2RX; // Set Port Control Register for PD7-6
-	GPIO_PORTD_LOCK_R = 0x4C4F434B; //unlock register
+	//GPIO_PORTD_LOCK_R = 0x4C4F434B; //unlock register
 }
 
 // PORTE CONFIGURATION
@@ -455,6 +484,7 @@ void initPortE(void){
   SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R4;
   delay = SYSCTL_RCGCGPIO_R;
   
+	GPIO_PORTE_LOCK_R = 0x4C4F434B; //unlock register
   GPIO_PORTE_DEN_R  = 0x30; // Set Digital Enable
   GPIO_PORTE_DIR_R  = 0x00; // Set PD3-2 as inputs
   GPIO_PORTE_AFSEL_R = 0x3C; // Set Alternate Function for PD7-6
@@ -501,6 +531,7 @@ void updateGenerationRate(void)
 
 
 void updateArray(){
+	if (AlertUpdateArray){
     int8_t i;
 		int8_t j;
 		int8_t count;
@@ -562,7 +593,11 @@ void updateArray(){
 				LED_ARRAY[i][j] = NEW_LED_ARRAY[i][j];
 			}
 		}
+		AlertUpdateArray = false;
 		return;
+	} else {
+		return;
+	}
 }
 
 int wrap(int8_t num)

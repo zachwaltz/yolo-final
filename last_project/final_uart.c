@@ -11,6 +11,9 @@
 CircularBuffer rxBuf2, txBuf2;
 CircularBuffer rxBuf5, txBuf5;
 
+extern void EnableInterrupts(void);
+extern void DisableInterrupts(void);
+
 /****************************************************************************
  * Configure UART 0 for 8-n-1 with RX and TX interrupts enabled.
  * Enable the RX and TX FIFOs as well.
@@ -64,6 +67,8 @@ void initUART2(void){
   delay = 10000;
   while( delay != 0) delay--;
 	
+	myUart->UARTControl &= ~UART_CTL_UARTEN;
+	
 	//SET BAUD RATE (AND RETURN FALSE FOR INVALID BAUD RATES)
 	myUart->IntegerBaudRateDiv = 43;
 	myUart->FracBaudRateDiv = 26;
@@ -106,12 +111,14 @@ void initUART5(void){
   delay = 10000;
   while( delay != 0) delay--;
 	
+	myUart->UARTControl &= ~UART_CTL_UARTEN;
+	
 	//SET BAUD RATE (AND RETURN FALSE FOR INVALID BAUD RATES)
 	myUart->IntegerBaudRateDiv = 43;
 	myUart->FracBaudRateDiv = 26;
   
 	//CONFIGURE THE LINE CONTROL FOR 8N1
-  myUart->LineControl = UART_LCRH_WLEN_8 | UART_LCRH_FEN;
+  myUart->LineControl = UART_LCRH_WLEN_8| UART_LCRH_FEN;
   
 	//SET INTERRUPT LEVELS
 	myUart->IntFIFOLevelSel = UART_IFLS_RX1_8 | UART_IFLS_TX1_8; //TODO: change to appropriate conditionds

@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu May 08 18:20:48 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu May 08 22:27:30 2014
 <BR><P>
-<H3>Maximum Stack Usage =        140 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         60 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; initBoard &rArr; initUART5 &rArr; cBufInit &rArr; malloc
 <P>
@@ -13,8 +13,8 @@ main &rArr; initBoard &rArr; initUART5 &rArr; cBufInit &rArr; malloc
 Functions with no stack information
 </H3><UL>
  <LI><a href="#[0]">Reset_Handler</a>
- <LI><a href="#[18]">DisableInterrupts</a>
- <LI><a href="#[26]">EnableInterrupts</a>
+ <LI><a href="#[1b]">DisableInterrupts</a>
+ <LI><a href="#[29]">EnableInterrupts</a>
  <LI><a href="#[3e]">StartCritical</a>
  <LI><a href="#[3f]">EndCritical</a>
  <LI><a href="#[40]">WaitForInterrupt</a>
@@ -81,7 +81,7 @@ Global Symbols
 
 <P><STRONG><a name="[3d]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
-<P><STRONG><a name="[18]"></a>DisableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<P><STRONG><a name="[1b]"></a>DisableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Tx
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Rx
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2Tx
@@ -89,7 +89,7 @@ Global Symbols
 <LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[26]"></a>EnableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<P><STRONG><a name="[29]"></a>EnableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Tx
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Rx
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2Tx
@@ -109,163 +109,165 @@ Global Symbols
 
 <P><STRONG><a name="[43]"></a>getStackBase</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text), UNUSED)
 
-<P><STRONG><a name="[d]"></a>detectMaster</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
-<LI>Call Chain = detectMaster &rArr; uart5Tx &rArr; cBufAddChar
-</UL>
-<BR>[Calls]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartTxPoll
+<P><STRONG><a name="[d]"></a>detectMaster</STRONG> (Thumb, 130 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartTxPoll
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Tx
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Rx
 <LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2Tx
 <LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2Rx
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
 
-<P><STRONG><a name="[13]"></a>slaveApp</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[13]"></a>slaveApp</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartTxPoll
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2Tx
 </UL>
 
-<P><STRONG><a name="[14]"></a>masterApp</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[14]"></a>masterApp</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartTxPoll
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart5Rx
 </UL>
 
-<P><STRONG><a name="[8]"></a>main</STRONG> (Thumb, 60 bytes, Stack size 80 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140 + Unknown Stack Size
+<P><STRONG><a name="[8]"></a>main</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60 + Unknown Stack Size
 <LI>Call Chain = main &rArr; initBoard &rArr; initUART5 &rArr; cBufInit &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartTxPoll
+<BR>[Calls]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGenerationRate
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateDisplay
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateArray
 <LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;examineButtons
 <LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
-<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;masterApp
-<LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slaveApp
-<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[25]"></a>initializeADC</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, final_adc.o(.text))
+<P><STRONG><a name="[28]"></a>initializeADC</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, final_adc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[2b]"></a>GetADCval</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, final_adc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGenerationRate
+<P><STRONG><a name="[2c]"></a>GetADCval</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, final_adc.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGenerationRate
 </UL>
 
-<P><STRONG><a name="[1e]"></a>initPortF</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[21]"></a>initPortF</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, final_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[1d]"></a>initPortE</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[20]"></a>initPortE</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, final_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[1c]"></a>initPortD</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[1f]"></a>initPortD</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, final_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[1b]"></a>initPortC</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[1e]"></a>initPortC</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, final_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[1a]"></a>initPortB</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[1d]"></a>initPortB</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, final_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[19]"></a>initPortA</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[1c]"></a>initPortA</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, final_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[16]"></a>initBoard</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[16]"></a>initBoard</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, final_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60 + Unknown Stack Size
 <LI>Call Chain = initBoard &rArr; initUART5 &rArr; cBufInit &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeWatchdog
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeTimerA
-<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeSysTick
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART5
-<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART2
-<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART0
-<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortA
-<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortB
-<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortC
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortD
-<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortE
-<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortF
-<LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeADC
-<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<BR>[Calls]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeWatchdog
+<LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeTimerA
+<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeSysTick
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART5
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART2
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART0
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortA
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortB
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortC
+<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortD
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortE
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initPortF
+<LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeADC
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[27]"></a>examineButtons</STRONG> (Thumb, 562 bytes, Stack size 8 bytes, final_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<P><STRONG><a name="[17]"></a>examineButtons</STRONG> (Thumb, 562 bytes, Stack size 8 bytes, final_gpio.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = examineButtons &rArr; __2sprintf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uartTxPoll
 </UL>
-
-<P><STRONG><a name="[29]"></a>getLCDRow</STRONG> (Thumb, 276 bytes, Stack size 8 bytes, final_gpio.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateDisplay
+<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[28]"></a>updateDisplay</STRONG> (Thumb, 926 bytes, Stack size 8 bytes, final_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getLCDRow
+<P><STRONG><a name="[2b]"></a>getLCDRow</STRONG> (Thumb, 272 bytes, Stack size 8 bytes, final_gpio.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = getLCDRow
+</UL>
+<BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateDisplay
 </UL>
 
-<P><STRONG><a name="[2a]"></a>updateGenerationRate</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, final_gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCval
+<P><STRONG><a name="[18]"></a>updateDisplay</STRONG> (Thumb, 1130 bytes, Stack size 8 bytes, final_gpio.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = updateDisplay &rArr; getLCDRow
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getLCDRow
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[19]"></a>updateGenerationRate</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, final_gpio.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = updateGenerationRate
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetADCval
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[2e]"></a>wrap2</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, final_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateArray
+<BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateArray
 </UL>
 
 <P><STRONG><a name="[2d]"></a>wrap</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, final_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateArray
+<BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateArray
 </UL>
 
-<P><STRONG><a name="[2c]"></a>updateArray</STRONG> (Thumb, 432 bytes, Stack size 12 bytes, final_gpio.o(.text))
+<P><STRONG><a name="[1a]"></a>updateArray</STRONG> (Thumb, 454 bytes, Stack size 12 bytes, final_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = updateArray
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wrap
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wrap2
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSTICKIntHandler
+<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4]"></a>SYSTICKIntHandler</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, final_systick.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SYSTICKIntHandler &rArr; updateArray
-</UL>
-<BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateArray
-</UL>
+<P><STRONG><a name="[4]"></a>SYSTICKIntHandler</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, final_systick.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[5]"></a>TIMERAIntHandler</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, final_systick.o(.text))
+<P><STRONG><a name="[5]"></a>TIMERAIntHandler</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, final_systick.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[23]"></a>initializeSysTick</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, final_systick.o(.text))
+<P><STRONG><a name="[26]"></a>initializeSysTick</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, final_systick.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[22]"></a>initializeTimerA</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, final_systick.o(.text))
+<P><STRONG><a name="[25]"></a>initializeTimerA</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, final_systick.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = initializeTimerA
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[24]"></a>initializeWatchdog</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, final_systick.o(.text))
+<P><STRONG><a name="[27]"></a>initializeWatchdog</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, final_systick.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[1f]"></a>initUART0</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, final_uart.o(.text))
+<P><STRONG><a name="[22]"></a>initUART0</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, final_uart.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[20]"></a>initUART2</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, final_uart.o(.text))
+<P><STRONG><a name="[23]"></a>initUART2</STRONG> (Thumb, 132 bytes, Stack size 16 bytes, final_uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = initUART2 &rArr; cBufInit &rArr; malloc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufInit
@@ -273,7 +275,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[21]"></a>initUART5</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, final_uart.o(.text))
+<P><STRONG><a name="[24]"></a>initUART5</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, final_uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = initUART5 &rArr; cBufInit &rArr; malloc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufInit
@@ -281,50 +283,40 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initBoard
 </UL>
 
-<P><STRONG><a name="[f]"></a>uart2Rx</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, final_uart.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
-<LI>Call Chain = uart2Rx &rArr; cBufGetChar
-</UL>
-<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
+<P><STRONG><a name="[f]"></a>uart2Rx</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, final_uart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetChar
-<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
 </UL>
 
-<P><STRONG><a name="[11]"></a>uart2Tx</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, final_uart.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32 + Unknown Stack Size
-<LI>Call Chain = uart2Tx &rArr; cBufAddChar
-</UL>
-<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
+<P><STRONG><a name="[11]"></a>uart2Tx</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, final_uart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufAddChar
-<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
+<BR>[Called By]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slaveApp
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
 </UL>
 
-<P><STRONG><a name="[12]"></a>uart5Rx</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, final_uart.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
-<LI>Call Chain = uart5Rx &rArr; cBufGetChar
-</UL>
-<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
+<P><STRONG><a name="[12]"></a>uart5Rx</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, final_uart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetChar
-<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
+<BR>[Called By]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;masterApp
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
 </UL>
 
-<P><STRONG><a name="[e]"></a>uart5Tx</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, final_uart.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32 + Unknown Stack Size
-<LI>Call Chain = uart5Tx &rArr; cBufAddChar
-</UL>
-<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
+<P><STRONG><a name="[e]"></a>uart5Tx</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, final_uart.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufGetFreeCount
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cBufAddChar
-<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
-<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
 </UL>
@@ -349,15 +341,14 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[44]"></a>uartRxPoll</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, final_uart.o(.text), UNUSED)
 
-<P><STRONG><a name="[10]"></a>uartTxPoll</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, final_uart.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;examineButtons
-<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[10]"></a>uartTxPoll</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, final_uart.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;examineButtons
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;masterApp
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slaveApp
 <LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detectMaster
 </UL>
 
-<P><STRONG><a name="[45]"></a>uartTxCharPoll</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, final_uart.o(.text), UNUSED)
+<P><STRONG><a name="[45]"></a>uartTxCharPoll</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, final_uart.o(.text), UNUSED)
 
 <P><STRONG><a name="[15]"></a>PLL_Init</STRONG> (Thumb, 134 bytes, Stack size 0 bytes, pll.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -368,8 +359,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART5
-<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART2
+<BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART5
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initUART2
 </UL>
 
 <P><STRONG><a name="[32]"></a>cBufAddChar</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, circular_buffer.o(.text))
@@ -420,11 +411,10 @@ Global Symbols
 
 <P><STRONG><a name="[48]"></a>__1sprintf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)
 
-<P><STRONG><a name="[17]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))
+<P><STRONG><a name="[2a]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;examineButtons
-<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;examineButtons
 </UL>
 
 <P><STRONG><a name="[49]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
